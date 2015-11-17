@@ -1,0 +1,10 @@
+Class name: Cat
+Parent class (if any): Command
+Subclasses (if any): none
+
+Responsibilities:
+ * Verifies the arguments passed, or throws an exception
+ * Shows a file content on the terminal
+
+Collaborators
+ * Command

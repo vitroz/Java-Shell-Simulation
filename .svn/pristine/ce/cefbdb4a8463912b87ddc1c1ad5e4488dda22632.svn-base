@@ -1,0 +1,37 @@
+package cmd;
+
+import directory.DirectoryTree;
+import files.TextFile;
+
+public class Echo extends Command {
+
+    public void run (String[] args) {
+        DirectoryTree tree = DirectoryTree.getDirectoryTree();
+        
+        TextFile newfile = new TextFile(args[2], tree.getCurrent(), args[0]);
+        tree.getCurrent().addFile(newfile);
+    }
+    
+    public String parseString (String[] args) {
+        String str = "";
+        
+        for (String s : args) {
+            str += s;
+
+            if (s.charAt(s.length() - 1) == '"') {
+                break;
+            }
+
+            str += " ";
+        }
+        
+        return str;
+    }
+    
+    public String toString() {
+		return "Prints string to the shell, if an append"
+				+ " argument is passed, put the string into a new file"
+				+ " passed after append operator. i.e echo '123' > file1";
+	}
+    
+}

@@ -1,0 +1,161 @@
+// **********************************************************
+// Assignment2:
+// UTOR user_name1: kaspered
+// UTOR user_name2: vieirad7
+// UTOR user_name3: kovacsti	 
+// UTOR user_name4: zhaogang
+//
+// Author1: Eduardo H. Kasper
+// Author2: Vitor D. V. Queiroz
+// Author3: Timothy Kovacs
+// Author4: Zhao Gang
+//
+//
+// Honor Code: I pledge that this program represents my own
+// program code and that I have coded on my own. I received
+// help from no one in designing and debugging my program.
+// I have also read t   he plagiarism section in the course info
+// sheet of CSC 207 and understand the consequences.
+// *********************************************************
+package driver;
+
+import cmd.Exit;
+import java.util.Scanner;
+
+import files.Directory;
+import directory.DirectoryTree;
+import files.TextFile;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class JShell {
+		  	
+
+    public static void main(String[] args) {
+        // Initiating JShell class and the working directory
+        JShell jshell = new JShell();
+        jshell.init();
+        
+        Scanner in = new Scanner(System.in);
+        String command;
+        String[] cmds;
+
+        do {
+            System.out.print("/# ");
+            command = in.nextLine();
+            cmds = command.split(" ");
+
+            command = cmds[0];
+            if (command.equals("")) {
+                continue;
+            }
+
+            if (! Interpreter.verify(command)) {
+                System.out.println("Interpreter");
+                jshell.error();
+                continue;
+            }
+
+            String[] parameters = jshell.parseParameters(cmds);
+            // If parameters doesn't have the required number of arguments
+            // it should throw an error and wait the next command
+            if (Interpreter.commands.get(command) < parameters.length) {
+                System.out.println("parameters problem");
+                jshell.error();
+                continue;
+            }
+
+            command = jshell.capitalize(cmds[0]);
+
+            try {
+                Interpreter i = new Interpreter(command);
+                // In cases where commands have no parameters, run
+                // should be executed instead of run(String[])
+                if (parameters.length > 0) {
+                    i.execute(parameters);
+                } else {
+                    i.execute();
+                }
+            } catch (Exception e) {
+                jshell.error();
+                System.out.println(e);
+            }
+        } while(Exit.exit == false);
+        
+	System.exit(0);
+  }
+    
+    /**
+     * Initiates the Directory Tree and what else is necessary to execute the 
+     * shell
+     */
+    public void init() {
+        // Adding the root folder to our Directory Tree
+        DirectoryTree.createDirectoryTree();
+
+        DirectoryTree.getCurrent().addFile(new TextFile("file1", "File1"));
+        DirectoryTree.getCurrent().addFile(new TextFile("file2", "File2"));
+        DirectoryTree.getCurrent().addFile(new TextFile("file3", "File3"));
+
+        Directory c = new Directory("directory1", DirectoryTree.getCurrent());
+
+      c.addFile(new TextFile("file1.txt", DirectoryTree.getCurrent(), "File1"));
+      c.addFile(new TextFile("file2.txt", DirectoryTree.getCurrent(), "File2"));
+      c.addFile(new TextFile("file3.txt", DirectoryTree.getCurrent(), "File3"));
+
+        DirectoryTree.add(c);
+    }
+    
+    /**
+     * Given an array with the users input, return an array of parameters
+     * @param cmds
+     * @return parameters
+     */
+    public String[] parseParameters(String[] cmds) {
+        String command = join(cmds, " ");
+        Pattern p = Pattern.compile("(['\"])(?:.(?!\\1))*.(['\"])");
+        Matcher m = p.matcher(command);
+        if (m.find()) {
+            String quotes = m.group();
+            System.out.println("quotes");
+            System.out.println(quotes);
+            System.out.println("");
+        }
+
+        String[] parameters = new String[cmds.length - 1];
+
+        
+        for (int i = 1; i < cmds.length; i++) {
+            parameters[i - 1] = cmds[i];
+        }
+
+        return parameters;
+    }
+    
+    public String join(String[] str, String separator) {
+        String joinedString = "";
+        for (String s : str) {
+            joinedString += s;
+            joinedString += separator;
+        }
+        
+        return joinedString;
+    }
+
+    /**
+     * Prints the specified error message
+     */
+    public void error() {
+        System.out.println("Invalid command");
+    }
+    
+    /**
+     * Formating the command to a correspondent class name
+     * @param command
+     * @return formatted string
+     */
+    public String capitalize (String command) {
+        return command.substring(0, 1).toUpperCase() + command.substring(1);
+    }
+
+}

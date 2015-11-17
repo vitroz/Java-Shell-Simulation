@@ -1,0 +1,14 @@
+Class name: Command
+Parent class (if any): none
+Subclasses (if any): LS, PWD Exit, MkDir, CD, Cat, Get, MV, CP, Echo
+
+Responsabilities
+ * Valitates the arguments passed, or throws an exception
+ * Knows the command
+ * Knows the arguments, if any
+ * Delegates the command to the its specific class
+
+Collaborators
+ * JShell
+ * LS
+ * PWD Exit, MkDir, CD, Cat, Get, MV, CP, Echo

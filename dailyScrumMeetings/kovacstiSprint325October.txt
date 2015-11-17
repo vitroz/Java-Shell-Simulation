@@ -1,0 +1,12 @@
+What did I work on last time?
+-- Worked on 'man' command class to adhere to polymorphism
+
+What do I plan to work on now?
+-- Seems to be an issue with the more important commands.
+-- I hope to dive into 'cp', 'cd', 'mv' commands to solve issues regarding the
+   more complicated test cases (non-base cases)
+
+
+Am I blocked on anything?
+-- Conflicts with 'man' command, probably dealing with different
+   implementations of the new code

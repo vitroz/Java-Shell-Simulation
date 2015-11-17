@@ -1,0 +1,17 @@
+package cmd;
+
+
+
+public class Exit extends Command {	
+    
+    public static boolean exit = false;
+    
+    public void run () {
+        exit = true;
+    }   
+    
+    public String toString() {
+		return "Terminates the shell.";
+	}
+    
+}

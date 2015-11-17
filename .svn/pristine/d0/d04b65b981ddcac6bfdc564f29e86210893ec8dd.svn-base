@@ -1,0 +1,10 @@
+Class name: Mkdir
+Parent class (if any): Command
+Subclasses (if any): none
+
+Responsibilities:
+ * Verifies the arguments passed, or throws an exception
+ * Makes a new directory based on path, (otherwise makes it in current working directory)
+
+Collaborators:
+ * Command

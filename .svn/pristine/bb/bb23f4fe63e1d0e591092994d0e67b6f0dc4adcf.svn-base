@@ -1,0 +1,55 @@
+package cmd;
+
+import java.util.Hashtable;
+
+public class Man extends Command {
+	
+	Hashtable<String, String> cmds = new Hashtable<String, String>();
+	
+	
+	
+	public void run(String[] args){		
+		
+		cmds.put("cat","Display	the	contents of	FILE in	the	shell.");
+		cmds.put("exit","Terminates shell.");
+		cmds.put("pwd", "Prints current working directory.");
+		
+		cmds.put("cd", "The command cd changes to directory passed as"
+				+ " an argument. i.e cd + arg(dir)");	
+		
+		cmds.put("ls", "Lists files/directories in the current"
+					+ " working directory");
+		
+		cmds.put("mkdir"," Create directories, each of which may be relative"
+				+ " to the current directory or may be a full path.");				
+		
+		cmds.put("man", "Prints a command's description"
+					+ " i.e: man + arg(cmd)");
+		
+		cmds.put("mv", "Move item to new directory."
+				+ " i.e mv + file + cwd/oldpath + newpath");
+		
+		cmds.put("cp", "Copy the contents of a file to a new file."
+				+ "i.e cp + file1 + file2");
+		
+		cmds.put("echo", "Prints string to the shell, if an append"
+					+ " argument is passed, put the string into a new file"
+					+ " passed after append operator. i.e echo '123' > file1");
+		
+		String cmd = args[0];
+		
+		
+		for (String key : cmds.keySet()) {
+			if(key.equals(cmd))
+				System.out.println(cmds.get(key));
+			else
+				continue;
+		}		
+	
+	
+				
+	
+			
+	}
+
+}

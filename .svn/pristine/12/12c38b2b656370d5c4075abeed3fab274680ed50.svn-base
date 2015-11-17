@@ -1,0 +1,11 @@
+Class name: Interpreter
+Parent class (if any): none
+Subclasses (if any): none
+
+Responsibilities:
+  * Check whether the command exists in the Command class
+  * change what the user types to a command so the Jshell can compile
+
+Collaborators:
+  * Command
+  * Cat Cd cp Echo exist get ls mkdir mv pwd

@@ -1,0 +1,15 @@
+What do I plan to do now?
+	I'll work on a new design as a base for our project. 
+	I figured that the interpreter class should pass each command the 
+	responsibility of parsing parameters in order to make it more flexible 
+	and easy to test. That is now needed once we have very different parameters 
+	(arguments, paths, etc.). And I've also created the tests for the 
+	interpreter class.
+	Another thing I'd like to point out is the commands already created. Although
+	I haven't touched any of those classes, they might not be working
+	right now, because of this structural changing. We have to transfer the logic
+	in the runs methods to constructors (but that isn't hard at all, almost
+	a copy and paste as long as I see).
+
+Am I blocked on anything?
+	- Need to define a new backlog and sprints

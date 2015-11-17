@@ -1,0 +1,22 @@
+package cmd;
+
+import driver.Commands;
+
+public class mkdir extends Commands {
+
+	public static File mkdir(String s){
+		String dirName = s;
+		String specialChar = "!@$&*()?:[]"<>'`|={}\/";
+		for charcter in s{
+			if(charcter in specialChar){
+				return "dirname cannot include charcter" + charcter
+			}
+		}
+		s = Integer.toHexString(dirName.hashCode());
+		File directory = new File(s);
+		if(!directory.exists()){
+			return directory
+		}
+		//cd to the exist folder
+	}
+}

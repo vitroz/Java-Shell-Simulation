@@ -1,0 +1,52 @@
+package cmd;
+
+import files.Directory;
+import directory.DirectoryTree;
+import files.TextFile;
+
+public class Ls extends Command {
+    DirectoryTree directoryTree;
+    
+    public Ls() {
+        directoryTree = DirectoryTree.getDirectoryTree();
+    }
+
+    public Ls(DirectoryTree d) {
+        directoryTree = d;
+    }
+    
+    @Override
+    public void run () {
+        listOn(DirectoryTree.getCurrent());
+    }
+
+    @Override
+    public void run (String[] args) {	
+        String directory = args[0];
+        if (directoryTree.pathExists(directory)) {
+            listOn(directoryTree.getVirtualCurrent());
+        }
+        
+        directoryTree.setVirtualCurrent(directoryTree.getCurrent());
+    }
+    
+    public void listOn(Directory targetDirectory) {
+    	// Listing directories first
+        for (Directory dir : directoryTree.getFoldersOn(targetDirectory)) {
+            System.out.println(dir.getName() + "/");
+        }
+        
+        // Listing files
+        for (TextFile file : targetDirectory.getContent()) {        	
+            System.out.println(file.getName());
+        	
+        }
+    }
+    
+    @Override
+    public String toString() {
+		return "Lists files/directories in the current"
+				+ " working directory";
+	}
+
+}

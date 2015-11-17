@@ -1,0 +1,52 @@
+package cmd;
+
+import directory.DirectoryFileTree;
+import directory.DirectoryTree;
+import files.Directory;
+
+	public class Pushd extends Command{
+	 @Override
+	    public void execute () {
+		 	if (!this.run()) {
+		     System.out.println("Directory couldn't be found or doesn't exist");
+		       }
+	System.out.println("On directory: " + DirectoryTree.getCurrent().getPath());
+	    }	
+	    
+	    public boolean run() {
+	    	 String directoryTarget = getDirectoryTarget();
+	         Directory parentDirectory = getParentDirectory();
+	         
+	         Command.dirOnStack = DirectoryTree.getCurrent().getPath();
+	         Command.dirOnStack = dirOnStack.replace("/root/", "");	         
+	         
+	         return DirectoryTree.setPath(this.getParameters());	              
+	         
+	    }
+	    
+	 	private Directory getParentDirectory() {
+	        String path = getParameters();
+	        if (path.lastIndexOf("/") > -1) {
+	            path = path.substring(0, path.lastIndexOf("/"));
+	            return DirectoryTree.getDirectory(path);
+	        }
+	        
+	        return DirectoryTree.getCurrent();
+	    }
+
+	    private String getDirectoryTarget() {
+	        String path = getParameters();
+	        if (path.lastIndexOf("/") > -1) {
+	            path = path.substring(path.lastIndexOf("/") + 1);
+	            return path;
+	        }
+	        
+	        return path;
+	    }
+	    
+	    @Override
+	    public String toString() {
+	        return "Pushs a directory path to the stack.";
+	    }
+
+}

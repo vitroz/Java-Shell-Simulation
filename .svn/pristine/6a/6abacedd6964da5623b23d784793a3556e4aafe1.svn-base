@@ -1,0 +1,53 @@
+package driver;
+
+import driver.File;
+import java.util.ArrayList;
+
+public class Directory extends File{
+
+  ArrayList<File> contents = new ArrayList<File>();
+    String path;
+    private Object parent;
+    private Object parentPath;
+    private String name;
+
+  public Directory(){
+    this.name = "root";
+    this.path = "/";
+    this.parent = null;
+    this.parentPath = null;
+
+  }//directory()
+
+  public Directory(String name, Directory parent){
+    this.name = name;
+    this.path = parent.path + name;
+    this.parent = parent;
+    this.parentPath = parent.path;
+    this.contents = null;
+
+  }//directory(name,parent)
+
+  public String getPath(){
+    return path;
+  }
+
+  public String getParentPath(){
+    return parentPath;
+  }
+
+  public void addFile(File f){
+    contents.add(f);
+  }
+
+  public void removeFile(File f){
+    parent.contents.remove(f);
+  }
+
+  public void showContents(){
+    for (File f: contents){
+      System.out.println(f.name);
+    }
+  }
+
+}//class directory

@@ -1,0 +1,8 @@
+Class name: Popd
+
+Responsibilities:
+ * Changes directory to the directory that is on the top level of the stack, previously saved using popd
+ * Check if the directory passed in the arguments exists
+
+Collaborators:
+ * Command

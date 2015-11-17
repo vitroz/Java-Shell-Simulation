@@ -1,0 +1,34 @@
+package cmd;
+
+import directory.DirectoryTree;
+import files.TextFile;
+
+public class Echo extends Command {
+
+    public Echo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void run (String[] args) {
+    	
+    	if(args.length < 3){
+    		System.out.println(args[0]);
+    	}
+    	
+        DirectoryTree tree = DirectoryTree.getDirectoryTree();
+        
+        TextFile newfile = new TextFile(args[2], tree.getCurrent(), args[0]);
+        tree.getCurrent().addFile(newfile);
+    }
+    
+    public void run(String args){
+    	System.out.println(args);
+    }
+        
+    public String toString() {
+		return "Prints string to the shell, if an append"
+				+ " argument is passed, put the string into a new file"
+				+ " passed after append operator. i.e echo '123' > file1";
+	}
+    
+}

@@ -1,0 +1,38 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import cmd.Command;
+import cmd.Ls;
+import directory.DirectoryTree;
+import driver.JShell;
+import files.Directory;
+import files.TextFile;
+
+public class LsTest {
+	
+	
+	@Before
+	public void initialize() {
+		
+		JShell jshell = new JShell();
+		jshell.init();
+	    //init, creates initial setup, which right now is a root directory
+		// a directory called directory1 and 3 files inside directory1.
+	    }
+	
+
+	@Test
+	public void testRunStringArray() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testInitialLs() throws Exception {
+		fail("Not yet implemented");		
+	}
+
+}

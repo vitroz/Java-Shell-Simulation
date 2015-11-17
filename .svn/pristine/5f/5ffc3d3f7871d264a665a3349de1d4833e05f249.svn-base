@@ -1,0 +1,58 @@
+package cmd;
+
+public class Man extends Command {
+	
+	public void run(String[] args){		
+		
+		String cmd = args[0];
+		if(cmd.equals("cat")){
+			System.out.println("The command cat display a file's content"
+					+ " (i.e cat + arg(file)");
+			
+		}else if(cmd.equals("cd")){
+			System.out.println("The command cd changes to directory passed as"
+					+ " an argument. i.e cd + arg(dir)");	
+			
+		}else if(cmd.equals("exit")){
+			System.out.println("Terminates shell.");
+			
+		}else if(cmd.equals("pwd")){
+			System.out.println("Prints current working directory.");
+			
+		}else if(cmd.equals("ls")){
+			System.out.println("Lists files/directories in the current"
+					+ " working directory");
+			
+		}else if(cmd.equals("mkdir")){
+			System.out.println("Creates a directory with the name passed"
+					+ " as an argument. i.e mkdir dir1");
+			
+		}else if(cmd.equals("get")){
+			System.out.println("Returns the URL");			
+			
+		}else if(cmd.equals("man")){
+			System.out.println("Prints a command's description"
+					+ " i.e: man + arg(cmd)");	
+			
+		}else if(cmd.equals("mv")){
+			System.out.println("Move item to new directory."
+					+ " i.e mv + file + cwd/oldpath + newpath");
+			
+		}else if(cmd.equals("cp")){
+			System.out.println("Copy the contents of a file to a new file."
+					+ "i.e cp + file1 + file2");	
+			
+		}else if(cmd.equals("echo")){
+			System.out.println("Prints string to the shell, if an append"
+					+ " argument is passed, put the string into a new file"
+					+ " passed after append operator. i.e echo '123' > file1");	
+			
+		}else{
+			System.out.println("Inexisting Command");			
+		}
+				
+	
+			
+	}
+
+}

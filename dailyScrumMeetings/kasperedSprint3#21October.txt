@@ -1,0 +1,14 @@
+What did I do last time?
+	- Finished Sprint2
+
+What do I plan to do now?
+	- Solve the problems with CD I was stuck at.
+	- Take a look at the problems my teammates are having and solve them
+	- Improve TextFile class
+	- Start sprint 3 commands
+
+Am I blocked on anything?
+ - Handle the error messages
+ - Echo command should be tested with right operators
+  - Actually, we should find a way to validate the arguments
+ - Figuring out how to start with testing

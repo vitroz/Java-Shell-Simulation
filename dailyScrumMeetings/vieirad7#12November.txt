@@ -1,0 +1,9 @@
+What did I do last time?
+	- Worked on the new design, adapted commands to fit the new way of calling the run method
+
+What do I plan to do now?
+	- work on Rm
+	- work on pushd pop
+
+Am I blocked on anything?
+	- pushd and pop 

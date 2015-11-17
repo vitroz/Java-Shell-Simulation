@@ -1,0 +1,19 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class EchoTest {
+
+	@Test
+	public void testRunStringArray() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testParseString() {
+		fail("Not yet implemented");
+	}
+
+}

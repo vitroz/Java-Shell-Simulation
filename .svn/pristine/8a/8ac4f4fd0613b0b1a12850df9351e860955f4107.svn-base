@@ -1,0 +1,69 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package directory;
+
+import directory.Directory;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author ehkasper
+ */
+public class DirectoryTree {
+    
+    private static ArrayList<Directory> tree = new ArrayList<>();
+    private static DirectoryTree self; 
+    private static Directory current;
+    
+    private DirectoryTree () {
+        
+    }
+    
+    public static DirectoryTree createDirectoryTree (Directory current) {
+        if (! (self instanceof DirectoryTree)) {
+            self = new DirectoryTree();
+        }
+        
+        DirectoryTree.current = current;
+        
+        return self;
+    }
+
+    public static DirectoryTree getDirectoryTree () {
+        return self;
+    }
+
+    public void setCurrent (Directory directory) {
+        if (tree.contains(directory)) {
+            current = directory;
+        }
+    }
+    
+    public Directory getCurrent() {
+        return DirectoryTree.current;
+    }
+
+    public void add (Directory directory) {
+        tree.add(directory);
+    }
+
+    public void remove (Directory directory) {
+        tree.remove(directory);
+    }
+    
+    public Directory findDirOnCurrent (String directoryName) {
+        for (Directory directory : tree) {
+            if (directory.getParent() == current) {
+                if (directory.getName().equals(directoryName)) {
+                    return directory;
+                }
+            }
+        }
+        
+        return null;
+    }
+    
+}

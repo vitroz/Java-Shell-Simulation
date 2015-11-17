@@ -1,0 +1,12 @@
+package cmd;
+
+import driver.Commands;
+
+
+
+public class exit extends Commands {	
+		
+	public void exit(){
+	    exit = !exit;  
+	}
+}

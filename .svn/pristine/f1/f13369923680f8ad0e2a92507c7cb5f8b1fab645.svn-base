@@ -1,0 +1,307 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package test.directory;
+
+import directory.DirectoryTree;
+import files.Directory;
+import java.util.ArrayList;
+import org.junit.After;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+/**
+ *
+ * @author ehkasper
+ */
+public class DirectoryTreeTest {
+    Directory root;
+    
+    public DirectoryTreeTest() {
+    }
+
+    @Before
+    public void setUp() {
+        root = mock(Directory.class);
+        DirectoryTree.createDirectoryTree(root);
+    }
+
+    @After
+    public void tearDown() {
+        DirectoryTree.destroy();
+    }
+
+    /**
+     * Test of createDirectoryTree method, of class DirectoryTree.
+     */
+    @Test
+    public void testCreateDirectoryTree() {
+        System.out.println("createDirectoryTree");
+        
+        assertNotNull(DirectoryTree.getCurrent());
+        assertEquals(root, DirectoryTree.getCurrent());
+    }
+
+
+    /**
+     * Test of setCurrent method, of class DirectoryTree.
+     */
+    @Test
+    public void testSetCurrent() {
+        System.out.println("setCurrent");
+
+        Directory directory = mock(Directory.class);
+        
+        DirectoryTree.add(directory);
+        
+        DirectoryTree.setCurrent(directory);
+    
+        assertEquals(directory, DirectoryTree.getCurrent());
+    }
+
+    /**
+     * Test of setVirtualCurrent method, of class DirectoryTree.
+     */
+    @Test
+    public void testSetVirtualCurrent() {
+        System.out.println("setVirtualCurrent");
+        Directory directory = mock(Directory.class);
+        DirectoryTree.setVirtualCurrent(directory);
+        
+        assertEquals(directory, DirectoryTree.getVirtualCurrent());
+    }
+
+    /**
+     * Test of getFoldersOn method, of class DirectoryTree.
+     */
+    @Test
+    public void testGetFoldersOn() {
+        System.out.println("getFoldersOn");
+                
+        Directory dir1 = mock(Directory.class);
+        
+        Directory dir2 = mock(Directory.class);
+        Directory dir3 = mock(Directory.class);
+        
+        when(dir2.getParent()).thenReturn(dir1);
+        when(dir3.getParent()).thenReturn(dir1);
+        
+        DirectoryTree.add(dir1);
+        DirectoryTree.add(dir2);
+        DirectoryTree.add(dir3);
+        
+        ArrayList<Directory> result = DirectoryTree.getFoldersOn(dir1);
+        assertEquals(2, result.size());
+        assertTrue(result.contains(dir2));
+        assertTrue(result.contains(dir3));
+    }
+
+    /**
+     * Test of getFoldersOnCurrent method, of class DirectoryTree.
+     */
+    @Test
+    public void testGetFoldersOnCurrent() {
+        System.out.println("getFoldersOnCurrent");
+        
+        Directory dir1 = mock(Directory.class);
+        
+        Directory dir2 = mock(Directory.class);
+        Directory dir3 = mock(Directory.class);
+        
+        when(dir2.getParent()).thenReturn(dir1);
+        when(dir3.getParent()).thenReturn(dir1);
+        
+        DirectoryTree.add(dir1);
+        DirectoryTree.add(dir2);
+        DirectoryTree.add(dir3);
+
+        DirectoryTree.setCurrent(dir1);
+        
+        ArrayList<Directory> result = DirectoryTree.getFoldersOnCurrent();
+        assertEquals(2, result.size());
+        assertTrue(result.contains(dir2));
+        assertTrue(result.contains(dir3));
+    }
+
+    /**
+     * Test of findDirOn method, of class DirectoryTree.
+     */
+    @Test
+    public void testFindDirOn() {
+        System.out.println("findDirOn");
+        
+        Directory dir1 = mock(Directory.class);
+        Directory dir2 = mock(Directory.class);
+        Directory dir3 = mock(Directory.class);
+        
+        when(dir2.getParent()).thenReturn(dir1);
+        when(dir2.getName()).thenReturn("dir2");
+        when(dir3.getParent()).thenReturn(dir1);
+        when(dir3.getName()).thenReturn("dir3");
+        
+        DirectoryTree.add(dir1);        
+        DirectoryTree.add(dir2);
+        DirectoryTree.add(dir3);
+        
+        String directoryName = "dir2";
+        
+        Directory result = DirectoryTree.findDirOn(dir1, directoryName);
+        assertEquals(dir2, result);
+        assertEquals("dir2", result.getName());
+    }
+
+    /**
+     * Test of findDirOn method with no found directory, of class DirectoryTree.
+     */
+    @Test
+    public void testFindDirOnWithNoValidDirectory() {
+        System.out.println("findDirOnWithNoValidDirectory");
+        
+        Directory dir1 = mock(Directory.class);
+        Directory dir2 = mock(Directory.class);
+        
+        when(dir2.getParent()).thenReturn(dir1);
+        when(dir2.getName()).thenReturn("dir2");
+        
+        DirectoryTree.add(dir1);        
+        DirectoryTree.add(dir2);
+                
+        Directory result = DirectoryTree.findDirOn(dir1, "testing");
+        assertTrue(result == null);
+    }
+    
+    /**
+     * Test of setPath method, of class DirectoryTree.
+     */
+    @Test
+    public void testSetPath() {
+        System.out.println("setPath");
+        
+        Directory dir1 = mock(Directory.class);
+        Directory dir2 = mock(Directory.class);
+        
+        when(dir1.getName()).thenReturn("dir1");
+        when(dir1.getParent()).thenReturn(root);
+        when(dir2.getName()).thenReturn("dir2");
+        when(dir2.getParent()).thenReturn(dir1);
+        
+        DirectoryTree.add(dir1);        
+        DirectoryTree.add(dir2);
+
+        String path = "dir1/dir2";
+        
+        Boolean result;
+
+        result = DirectoryTree.setPath(path);
+        assertTrue(result);
+
+        result = DirectoryTree.setPath("/root/dir1/dir2");
+
+        assertTrue(result);
+        assertEquals(dir2, DirectoryTree.getCurrent());
+    }
+    
+    /**
+     * Test of setPath method, of class DirectoryTree.
+     */
+    @Test
+    public void testSetPathDotDot() {
+        System.out.println("setPathDotDot");
+        
+        Directory dir1 = mock(Directory.class);
+        Directory dir2 = mock(Directory.class);
+        
+        when(dir1.getName()).thenReturn("dir1");
+        when(dir1.getParent()).thenReturn(root);
+        when(dir2.getName()).thenReturn("dir2");
+        when(dir2.getParent()).thenReturn(dir1);
+        
+        DirectoryTree.add(dir1);
+        DirectoryTree.add(dir2);
+
+        DirectoryTree.setCurrent(dir2);
+        
+        Boolean result = DirectoryTree.setPath("..");
+        assertTrue(result);
+        assertEquals(dir1, DirectoryTree.getCurrent());
+    }
+
+    /**
+     * Test of setPath method backing to root, of class DirectoryTree.
+     */
+    @Test
+    public void testSetPathBackToRoot() {
+        System.out.println("setPathBackToRoot");
+        
+        Directory dir1 = mock(Directory.class);
+        Directory dir2 = mock(Directory.class);
+        
+        when(root.getName()).thenReturn("root");
+        when(root.getParent()).thenReturn(null);
+        when(dir1.getName()).thenReturn("dir1");
+        when(dir1.getParent()).thenReturn(root);
+        when(dir2.getName()).thenReturn("dir2");
+        when(dir2.getParent()).thenReturn(dir1);
+        
+        DirectoryTree.add(dir1);
+        DirectoryTree.add(dir2);
+
+        DirectoryTree.setCurrent(dir2);
+
+        Boolean result = DirectoryTree.setPath("../..");
+        assertTrue(result);
+        assertEquals(root, DirectoryTree.getCurrent());
+    }
+
+    /**
+     * Test of pathExists method, of class DirectoryTree.
+     */
+    @Test
+    public void testPathExists() {
+        System.out.println("pathExists");
+        
+        Directory dir1 = mock(Directory.class);
+        Directory dir2 = mock(Directory.class);
+        
+        when(dir1.getName()).thenReturn("dir1");
+        when(dir1.getParent()).thenReturn(root);
+        when(dir2.getName()).thenReturn("dir2");
+        when(dir2.getParent()).thenReturn(dir1);
+        
+        DirectoryTree.add(dir1);        
+        DirectoryTree.add(dir2);
+
+        String path = "dir1/dir2";
+        
+        Boolean result;
+
+        result = DirectoryTree.pathExists(path);
+        assertTrue(result);
+
+        result = DirectoryTree.pathExists("/root/dir1/dir2");
+        assertTrue(result);
+        assertEquals(DirectoryTree.getVirtualCurrent(), dir2);
+    }
+
+    /**
+     * Test of destroy method, of class DirectoryTree.
+     */
+    @Test
+    public void testDestroy() {
+        System.out.println("destroy");
+        
+        DirectoryTree.destroy();
+        assertNull(DirectoryTree.getCurrent());
+        assertNull(DirectoryTree.getVirtualCurrent());
+        assertNull(DirectoryTree.getDirectoryTree());
+        assertTrue(DirectoryTree.getTree() instanceof ArrayList);
+        assertEquals(0, DirectoryTree.getTree().size());
+    
+    }
+    
+}

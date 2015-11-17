@@ -1,0 +1,120 @@
+package cmd;
+
+import files.Directory;
+import files.File;
+import directory.DirectoryTree;
+import files.TextFile;
+
+public class Cp extends Command {
+    
+    private String description = "cp OLDPATH NEWPATH: \n Similar to mv command;"
+    		+ "Doesn't remove OLDPATH; Copies OLDPATH to NEWPATH";
+	private DirectoryTree tree;
+    
+    File file1, file2;
+    
+    public Cp () {
+        tree = DirectoryTree.getDirectoryTree();
+    }
+    
+
+    @Override
+    public void run (String[] args) {
+        File file1 = null;
+        File file2 = null;
+        Directory dir = null;
+        String path, file;
+        int indexLastFolder = args[0].lastIndexOf("/");
+        
+        if (DirectoryTree.pathExists(args[0])){
+			Directory vDir = DirectoryTree.getVirtualCurrent();
+			System.out.println(vDir.getName() + ":");
+			System.out.println("\n");
+		}
+		else{
+			Directory pDir = DirectoryTree.getVirtualCurrent();
+			String [] files = args[0].split("/");
+			String f = files[files.length - 1];
+			
+			/*  paths specifying TEXTFILES */
+			if(pDir.findFile(f) != null){
+				//print of the name of the file
+				System.out.println(pDir.findFile(f).getName());
+				file1 = pDir.findFile(f);
+			}
+			else{
+				//if it is not a textfile (or directory) print error msg
+				System.out.println(args[0] + " does not exist.");
+			}
+				
+		}
+        
+        DirectoryTree.setVirtualCurrent(DirectoryTree.getCurrent());
+        
+        //adds OLDFILE to NEWFILE DIR
+        if (DirectoryTree.pathExists(args[1])){
+        	dir = DirectoryTree.getVirtualCurrent();
+        	file2 = file1;
+        	file2.setParent(dir);
+        	dir.addFile(file2);
+        }
+        else{
+        	Directory pDir = DirectoryTree.getVirtualCurrent();
+			String [] files = args[1].split("/");
+			String f = files[files.length - 1];
+			
+			/*  paths specifying TEXTFILES */
+			if(pDir.findFile(f) == null){
+				
+				TextFile tf = (TextFile)file1;
+				String c = tf.getContent();
+				file2 = new TextFile(f,pDir, c);
+				pDir.addFile(file2);
+				
+			}
+			else{ //add code to overwrite?
+				System.out.println("File already exists.");
+			}
+			
+        }
+        
+        DirectoryTree.setVirtualCurrent(DirectoryTree.getCurrent());
+        
+        /*if (indexLastFolder > -1) {
+            path = args[0];
+            file = path.substring(indexLastFolder);        
+            path = path.substring(0, indexLastFolder);
+
+            if (DirectoryTree.pathExists(path)) {
+                file1 = DirectoryTree.getVirtualCurrent().findFile(file);
+            }
+        } else {
+            file1 = DirectoryTree.getCurrent().findFile(args[0]);
+        }
+        
+        System.out.println(file1.getName());
+
+        
+        indexLastFolder = args[1].lastIndexOf("/");
+        if (indexLastFolder > -1) {
+            path = args[1];
+            file = path.substring(indexLastFolder + 1);        
+            path = path.substring(0, indexLastFolder);
+
+            if (DirectoryTree.pathExists(path)) {
+                file2 = new TextFile(file, DirectoryTree.getVirtualCurrent(), file1.getContent());
+                DirectoryTree.getVirtualCurrent().addFile(file2);
+            }
+        } else {
+            file2 = new TextFile(args[1], DirectoryTree.getCurrent(), file1.getContent());
+            DirectoryTree.getCurrent().addFile(file2);
+        }
+        */
+    }
+    //method to grab description for man command
+    public String getDescription(){
+    	return description;
+    }
+
+    
+}

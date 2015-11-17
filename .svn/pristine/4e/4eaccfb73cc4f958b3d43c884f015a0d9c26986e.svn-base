@@ -1,0 +1,24 @@
+package cmd;
+
+import directory.Directory;
+import directory.DirectoryTree;
+import files.TextFile;
+
+public class Ls extends Command {
+    
+    @Override
+    public void run () {   	
+      
+    	// Listing directories first
+        for (Directory directory : DirectoryTree.getFoldersOnCurrent()) {
+            System.out.println(directory.getName() + "/");
+        }
+        
+        // Listing files
+        for (TextFile file : DirectoryTree.getCurrent().getContent()) {        	
+            System.out.println(file.getName());
+        	
+        }
+    }
+
+}

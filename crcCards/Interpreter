@@ -1,0 +1,9 @@
+Class name: Interpreter
+
+Responsibilities:
+  * Check whether the command exists in the Command class
+  * Parse the input to an actual command with parameters (if any)
+
+Collaborators:
+  * Command
+  * JShell

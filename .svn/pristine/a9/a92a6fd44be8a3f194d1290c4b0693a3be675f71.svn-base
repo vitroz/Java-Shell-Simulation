@@ -1,0 +1,9 @@
+* (Test) Test command `exit`
+* (Test) Test command `get`
+* (Test) Test command `ls`
+* (Test) Test command `pwd`
+* (Test) Test command `mkdir`
+* (Test) Test command `mv`
+* (Test) Test command `cat`
+* (Test) Test command `cd`
+* (Test) Test command `cp`

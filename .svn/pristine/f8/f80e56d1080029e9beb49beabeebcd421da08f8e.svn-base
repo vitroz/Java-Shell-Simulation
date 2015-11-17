@@ -1,0 +1,10 @@
+Class name: Get
+Parent class (if any): Command
+Subclasses (if any): none
+
+Responsibilities
+ * Validates the url passed as argument
+ * Gets an URL content
+
+Collaborators
+ * Command

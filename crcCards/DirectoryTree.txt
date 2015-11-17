@@ -1,0 +1,10 @@
+Class name: Directory Tree
+Parent class (if any): 
+Subclasses (if any): 
+
+Responsibilities:
+ * Directory tree should keep track of all directories existing at runtime
+ * Should contain initially a root directory
+
+Collaborators:
+ * Directory

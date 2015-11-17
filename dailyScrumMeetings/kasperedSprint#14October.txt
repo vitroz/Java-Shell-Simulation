@@ -1,0 +1,9 @@
+What did I do last time?
+	- Added first CRCCards for initial design
+
+What do I plan to do now?
+	- Insert classes to start development
+
+Am I blocked on anything?
+	- Not yet. As soon as we continue working on the commands, we’ll have some problems.
+

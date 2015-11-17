@@ -1,0 +1,6 @@
+* As a user, I want to use command `mkdir`, so I can create a new directory
+* (Test) Test command `mkdir`
+* As a user, I want to use command `mv`, so I can move a file to a new location
+* (Test) Test command `mv`
+* As a user, I want to use command `pwd`, so I can see the current working directory
+* (Test) Test command `pwd`

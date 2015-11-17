@@ -1,0 +1,141 @@
+package cmd;
+
+import directory.DirectoryTree;
+import files.Directory;
+import files.TextFile;
+
+public class Echo extends Command {
+    
+    /**
+     * Overriding execute so echo inserts string into new file
+     */
+    @Override
+    public void execute () {
+        try {
+            String r = this.run();
+            if (r != null) {
+                System.out.println(r);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    
+    public String run () throws Exception {
+        String content = getContent();
+        String operator = getOperator();
+        
+        if (! outFile) {
+            return content;
+        }
+        
+        String pathFilename = getFullPath().replaceAll(operator, "").trim();
+        
+        String pathParent = getPathParent(pathFilename);
+        Directory parent = (pathParent != null) ?
+                DirectoryTree.getDirectory(pathParent) :
+                DirectoryTree.getCurrent();
+        
+        String filename = getFileName(pathFilename);
+        
+        
+        if (parent == null) {
+            throw new Exception("Path not found");
+        }
+        
+        TextFile newfile = new TextFile(filename, parent, content);
+        parent.addFile(newfile);
+        Directory p = parent;
+        return null;
+    }
+ 
+    
+    private String getContent() {
+        String parameters = getParameters();
+        
+        int firstQuote = parameters.indexOf("\"");
+        int lastQuote = parameters.lastIndexOf("\"");
+        
+        if (firstQuote > -1 && lastQuote > -1) {
+            return parameters.substring(firstQuote + 1, lastQuote);
+        }
+
+        return parameters.split(" ")[0];
+    }
+
+
+    private String getOperator() throws Exception {
+        String parameters = getParameters();
+        String content = getContent();
+        
+        parameters = parameters.replaceAll(content, "");
+        parameters = parameters.replaceAll("\"\"", "");
+        
+        if (! parameters.equals("")) {
+            if (parameters.contains(">") || parameters.contains(">>")) {
+                outFile = true;
+
+                int operatorIndex = parameters.indexOf(">>");
+                if (operatorIndex > -1) {
+                    return ">>";
+                }
+
+                return ">";
+            }
+
+            throw new Exception("No matches found for the operator");
+        }
+        
+        outFile = false;
+        return null;
+        
+    }
+
+    private String getFullPath() throws Exception {
+        String parameters = getParameters();
+
+        return parameters
+            .substring(parameters.lastIndexOf(getOperator()))
+            .trim();
+    }
+
+    /**
+     * Getting the file name from whole path
+     * @param path
+     * @return String - file name
+     */
+    protected String getFileName(String path) {
+        if (path.lastIndexOf("/") > -1) {
+            path = path.substring(path.lastIndexOf("/") + 1);
+        }
+        
+        return path;
+    }
+
+
+    /**
+     * Getting path until parent directory
+     * @return String - path or null
+     */
+    private String getPathParent(String path) {
+        if (path.lastIndexOf("/") > -1) {
+            path = path.substring(0, path.lastIndexOf("/"));
+            return path;
+        }
+
+        return null;
+    }
+
+    
+    /**
+     * Overriding toString so it can be used with man describing mv command
+     * @return String
+     */
+    @Override
+    public String toString() {
+        return "Prints string to the shell, if an append"
+            + " argument is passed, put the string into a new file"
+            + " passed after append operator. i.e echo '123' > file1";
+    }   
+}

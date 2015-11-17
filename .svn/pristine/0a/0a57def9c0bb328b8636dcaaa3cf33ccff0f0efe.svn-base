@@ -1,0 +1,79 @@
+package cmd;
+
+
+//import driver.Printer;
+
+import directory.DirectoryTree;
+import files.Directory;
+import files.TextFile;
+
+public class Cat extends Command {
+    
+    /**
+     * Overriding execute so cat shows file content
+     */
+    @Override
+    public void execute () {
+        TextFile textFile = this.run();
+        if (textFile instanceof TextFile) {
+            //prints contents of the file specified
+            System.out.println(textFile.getContent());
+        } else {
+            System.out.println("File couldn't be found");
+        }
+    }
+
+
+    /**
+     * Returning TextFile so it's possible to read its content
+     * @return TextFile
+     */
+    public TextFile run () {
+        String fileTarget = getFileNameTarget();
+        Directory parentDirectory = getParentDirectory();
+        
+        TextFile textFile = parentDirectory.findFile(fileTarget);
+        
+        if (textFile instanceof TextFile) {
+            return textFile;
+        }
+        
+        return null;
+    }
+
+
+    /**
+     * Returning parent directory
+     * @return Directory - parent
+     */
+    private Directory getParentDirectory() {
+        String path = getParameters();
+        if (path.lastIndexOf("/") > -1) {
+            path = path.substring(0, path.lastIndexOf("/"));
+            return DirectoryTree.getDirectory(path);
+        }
+        
+        return DirectoryTree.getCurrent();
+    }
+
+    private String getFileNameTarget() {
+        String path = getParameters();
+        if (path.lastIndexOf("/") > -1) {
+            path = path.substring(path.lastIndexOf("/") + 1);
+            return path;
+        }
+        
+        return path;
+    }
+    
+    
+    /**
+     * Overriding toString so it can be used with man describing cat command
+     * @return String - description
+     */
+    @Override
+    public  String toString() {
+        return "The command cat display a file's content"
+                                + " (i.e cat + arg(file)";
+    }    
+}

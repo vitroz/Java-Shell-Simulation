@@ -1,0 +1,26 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import cmd.Command;
+import cmd.Ls;
+import directory.DirectoryTree;
+import files.Directory;
+import files.TextFile;
+
+public class LsTest {
+	
+
+	@Test
+	public void testRunStringArray() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testInitialLs() throws Exception {
+		
+	}
+
+}

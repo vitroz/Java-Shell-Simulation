@@ -1,0 +1,46 @@
+package cmd;
+
+import files.Directory;
+import directory.DirectoryTree;
+import files.TextFile;
+
+public class Cp extends Command {
+
+    @Override
+    public void run (String[] args) {
+        TextFile file1 = null, file2;
+        Directory dir = null;
+        String path, file;
+        int indexLastFolder = args[0].lastIndexOf("/");
+        
+        if (indexLastFolder > -1) {
+            path = args[0];
+            file = path.substring(indexLastFolder + 1);        
+            path = path.substring(0, indexLastFolder);
+
+            if (DirectoryTree.pathExists(path)) {
+                file1 = DirectoryTree.getVirtualCurrent().findFile(file);
+            }
+        } else {
+            file1 = DirectoryTree.getCurrent().findFile(args[0]);
+        }
+        
+
+
+        indexLastFolder = args[1].lastIndexOf("/");
+        if (indexLastFolder > -1) {
+            path = args[1];
+            file = path.substring(indexLastFolder + 1);        
+            path = path.substring(0, indexLastFolder);
+
+            if (DirectoryTree.pathExists(path)) {
+                file2 = new TextFile(file, DirectoryTree.getVirtualCurrent(), file1.getContent());
+                DirectoryTree.getVirtualCurrent().addFile(file2);
+            }
+        } else {
+            file2 = new TextFile(args[1], DirectoryTree.getCurrent(), file1.getContent());
+            DirectoryTree.getCurrent().addFile(file2);
+        }
+
+    }
+}

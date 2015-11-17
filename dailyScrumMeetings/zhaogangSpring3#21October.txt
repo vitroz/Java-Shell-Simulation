@@ -1,0 +1,8 @@
+What did I do last time?
+-- Finished Sprint2
+
+What do I plan to do now?
+-- Work on sprint 3
+
+Am I blocked on anything?
+-- ls and get is done. I tried to work on Exit but cannot figure it out.

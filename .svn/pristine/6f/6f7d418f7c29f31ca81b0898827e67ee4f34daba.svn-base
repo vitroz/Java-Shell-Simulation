@@ -1,0 +1,44 @@
+package test.cmd;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import cmd.Cat;
+import cmd.Cp;
+import cmd.Echo;
+import directory.DirectoryTree;
+import driver.JShell;
+import files.Directory;
+import files.TextFile;
+
+public class EchoTest {
+
+    @Test
+    public void testEchoToANewFile() {
+            Echo echo = new Echo();
+            Directory directory = DirectoryTree.getCurrent();
+
+            echo.run(new String[] {"Test",">","file4"});		
+
+            String expected = "Test";
+
+
+            TextFile file4 = directory.findFile("file4");		
+            assertEquals(expected,file4.getContent());
+    }
+
+    @Test
+    public void testToString() {
+           System.out.println("toString");
+           Echo instance = new Echo();
+           String expResult = "Prints string to the shell, if an append"
+                                   + " argument is passed, put the string into a new file"
+                                   + " passed after append operator. i.e echo '123' > file1";
+           String result = instance.toString();
+           assertEquals(expResult, result);
+       }
+
+}

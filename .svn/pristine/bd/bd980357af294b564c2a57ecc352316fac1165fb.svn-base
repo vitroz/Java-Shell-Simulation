@@ -1,0 +1,20 @@
+package cmd;
+
+import directory.DirectoryTree;
+
+public class Cd extends Command {
+
+
+    public void run (String[] directory) {
+        if (! DirectoryTree.setPath(directory[0])) {
+            System.out.println("Directory does not exist");            
+        }
+    }
+
+    public void run (String directory) {
+        if (! DirectoryTree.setPath(directory)) {
+            System.out.println("Directory does not exist");            
+        }
+    }
+
+}

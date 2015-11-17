@@ -1,0 +1,47 @@
+package cmd;
+
+import directory.DirectoryFileTree;
+import directory.DirectoryTree;
+import files.Directory;
+
+	public class Pushd extends Command{
+	 @Override
+	    public void execute () {
+	        System.out.println(this.run());
+	    }
+	 
+	 	private Directory getParentDirectory() {
+	        String path = getParameters();
+	        if (path.lastIndexOf("/") > -1) {
+	            path = path.substring(0, path.lastIndexOf("/"));
+	            return DirectoryTree.getDirectory(path);
+	        }
+	        
+	        return DirectoryTree.getCurrent();
+	    }
+
+	    private String getDirectoryTarget() {
+	        String path = getParameters();
+	        if (path.lastIndexOf("/") > -1) {
+	            path = path.substring(path.lastIndexOf("/") + 1);
+	            return path;
+	        }
+	        
+	        return path;
+	    }
+	    
+	    public String run() {
+	    	 String directoryTarget = getDirectoryTarget();
+	         Directory parentDirectory = getParentDirectory();
+	         
+	         String dirOnStack = DirectoryTree.getCurrent().getPath(); // Somehow need to save this path to change to using popd... aftewards
+	         
+	         return DirectoryTree.getCurrent().getPath();
+	    }
+	    
+	    @Override
+	    public String toString() {
+	        return "Prints current working directory";
+	    }
+
+}

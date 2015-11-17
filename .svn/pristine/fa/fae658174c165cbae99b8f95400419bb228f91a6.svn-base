@@ -1,0 +1,9 @@
+What do I plan to do now?
+	-I added minor code to get the commands to run again with our new design, which was call the getCmd method 
+	 on the interpreter instance and aftewards call the run method on it.(By the way props to Eduardo, the JShell class looks so clean now! ;)
+	 also I changed the verify method on the interpreter class a little bit, because we were capitalizing 
+	 the command before the verify execution, so it would always throw an exception beacause the program wouldn't find the command in the hash.	
+	- For next sprint, I plan on working on the get command.
+
+Am I blocked on anything?
+	- Start on get command, not sure on how to retrieve real url's content, any guesses on how to that in java?

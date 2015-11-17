@@ -1,0 +1,14 @@
+package driver;
+
+abstract public class Command {
+	
+    public void run (String[] args) throws Exception {
+        throw new Exception("You should implement this method on the "
+                + "subclasses");
+    }
+    
+    public void run() throws Exception {
+        throw new Exception("You should implement this method without arguments on the "
+                + "subclasses");
+    }
+}

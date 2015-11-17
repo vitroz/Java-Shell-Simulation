@@ -1,0 +1,13 @@
+What did I work on last time?
+-- Attempting to finish the traversal for copying and moving files for 
+Assignment2A. Ran into some 
+difficulties when interacting with the root node.
+
+What do I plan to work on now?
+-- understanding and implementing Get class, plus the LS -r flag class. 
+I primarily worked on the LS class as it was crucial for traversal through
+DirectoryTree.
+
+
+Am I blocked on anything?
+-- Not at the moment

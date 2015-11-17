@@ -1,0 +1,70 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package test.cmd;
+
+import directory.DirectoryTree;
+import files.Directory;
+import files.TextFile;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+/**
+ *
+ * @author ehkasper
+ */
+public class BaseTestCase {
+    Directory root;
+    
+    @Before
+    public void setUp() throws Exception {
+        root = mock(Directory.class);
+        DirectoryTree.createDirectoryTree(root);        
+        DirectoryTree.add(root);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        DirectoryTree.destroy();
+    }
+    
+    protected void createBaseStructure () {
+        Directory dir1 = mock(Directory.class);
+        Directory dir2 = mock(Directory.class);
+        Directory dir3 = mock(Directory.class);
+        
+        when(dir1.getName()).thenReturn("dir1");
+        when(dir1.getParent()).thenReturn(dir1);
+        
+        when(dir2.getName()).thenReturn("dir2");
+        when(dir2.getParent()).thenReturn(dir2);
+
+        when(dir3.getName()).thenReturn("dir3");
+        when(dir3.getParent()).thenReturn(dir3);
+        
+        TextFile file1 = mock(TextFile.class);
+        when(file1.getName()).thenReturn("file1");
+        dir1.addFile(file1);
+        
+        TextFile file2 = mock(TextFile.class);
+        when(file2.getName()).thenReturn("file2");
+        root.addFile(file2);
+        
+        TextFile file3 = mock(TextFile.class);
+        when(file3.getName()).thenReturn("file3");    
+        root.addFile(file3);
+        
+        DirectoryTree.add(dir1);
+        DirectoryTree.add(dir2);
+        DirectoryTree.add(dir3);
+    }
+    
+}

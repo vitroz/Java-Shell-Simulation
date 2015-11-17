@@ -1,0 +1,17 @@
+What did I work on last time?
+-- Directory and File classes
+
+What do I plan to work on now?
+-- Going over several files, including the DirectoryTree which was added as a
+traversable structure for which we need to utilize for commands such as cd, 
+cp, mv. 
+-- I plan to jump ahead to Sprint 3, as Sprint2 is wrapping up. 
+-- Need to help solve other's conflicts, especially regarding the traversing 
+of the DirectoryTree when copying file.
+-- Will start with an abundance of comments, transitioning to code
+
+Am I blocked on anything?
+-- No, however just figuring out the double dot and single dot parsing of an 
+argument for the cd command 
+ex. (cd .. traverses to the previous directory)
+    (cd ./ current directory  [you can attach a path to this as well])

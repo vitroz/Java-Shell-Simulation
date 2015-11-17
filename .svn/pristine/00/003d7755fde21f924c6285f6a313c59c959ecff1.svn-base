@@ -1,0 +1,22 @@
+* (JShell) Begin coding the structure of the command line interpreter
+* (JShell) Have the shell continually prompt the user for input
+* (JShell) Parse the user input for proper keywords
+* Add Help classes to the project
+* Update the CRC Cards to the new design
+
+User: kaspered
+Tasks:
+* (JShell) Begin coding the structure of the command line interpreter
+* (JShell) Have the shell continually prompt the user for input
+* (JShell) Parse the user input for proper keywords
+
+User: kovacsti
+Tasks:
+* Add Help classes to the project
+* Created File/TextFile/Directory classes
+* In order to create a file, we need to use the command 'cat'. This command
+will then use the File class to create a file in the cwd.
+
+User: zhaogang
+Task:
+*(cmd) Coding mkdir method

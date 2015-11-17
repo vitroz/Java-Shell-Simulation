@@ -1,0 +1,29 @@
+package test.cmd;
+
+import org.junit.Test;
+
+import cmd.Man;
+
+
+public class ManTest {
+	
+
+	@Test
+	public void testMan() throws Exception {
+		
+		Man man = new Man();
+		man.run(new String[] {"cat"});	
+		man.run(new String[] {"cd"});
+		man.run(new String[] {"cp"});	
+		man.run(new String[] {"echo"});	
+		man.run(new String[] {"exit"});	
+		man.run(new String[] {"ls"});	
+		man.run(new String[] {"mkdir"});	
+		man.run(new String[] {"mv"});	
+		man.run(new String[] {"pwd"}); 
+		man.run();
+		
+
+	}
+
+}

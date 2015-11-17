@@ -1,0 +1,11 @@
+package cmd;
+
+import driver.Commands;
+
+public class get extends Commands {
+	
+	  public void get(String url) {
+	      System.out.println("url\n" + url);
+	  }
+
+}

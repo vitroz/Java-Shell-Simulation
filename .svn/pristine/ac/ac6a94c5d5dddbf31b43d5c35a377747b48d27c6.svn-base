@@ -1,0 +1,146 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package directory;
+
+import files.Directory;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author ehkasper
+ */
+public class DirectoryTree {
+    
+    private static ArrayList<Directory> tree = new ArrayList<>();
+    private static DirectoryTree self; 
+    private static Directory current;
+    private static Directory virtualCurrent;
+
+    private DirectoryTree (Directory root) {
+        DirectoryTree.current = root;
+        DirectoryTree.virtualCurrent = root;
+    }
+    
+    public static DirectoryTree createDirectoryTree (Directory root) {
+        if (! (self instanceof DirectoryTree)) {
+            self = new DirectoryTree(root);
+        }
+
+        return self;
+    }
+
+    public static DirectoryTree getDirectoryTree() {
+        return self;
+    }
+
+    public static ArrayList<Directory> getTree() {
+        return tree;
+    }
+
+    public static void setCurrent(Directory directory) {
+        if (tree.contains(directory)) {
+            virtualCurrent = directory;
+            current = directory;
+        }
+    }
+
+    public static Directory getCurrent() {
+        return DirectoryTree.current;
+    }
+
+    public static void setVirtualCurrent(Directory directory) {
+        virtualCurrent = directory;
+    }
+
+    public static Directory getVirtualCurrent() {
+        return DirectoryTree.virtualCurrent;
+    }
+
+    public static void add(Directory directory) {
+        tree.add(directory);
+    }
+
+    public static void remove(Directory directory) {
+        tree.remove(directory);
+    }
+
+    public static ArrayList<Directory> getFoldersOn(Directory target) {
+        ArrayList<Directory> directories = new ArrayList<>();
+        for (Directory directory : tree) {
+            if (directory.getParent() == target) {
+                directories.add(directory);
+            }
+        }
+        
+        return directories;
+    }
+
+    public static ArrayList<Directory> getFoldersOnCurrent() {
+        return getFoldersOn(current);
+    }
+
+    public static Directory findDirOn(Directory current, String directoryName) {
+        for (Directory directory : tree) {
+            if (directory.getParent() == current) {
+                if (directory.getName().equals(directoryName)) {
+                    return directory;
+                }
+            }
+        }
+
+        return null;
+    }
+    
+
+    public static Boolean setPath(String path) {
+        if (DirectoryTree.pathExists(path)) {
+            DirectoryTree.setCurrent(DirectoryTree.getVirtualCurrent());
+
+            return true;
+        }
+        
+        DirectoryTree.setVirtualCurrent(DirectoryTree.getCurrent());
+        return false;
+    }
+    
+    public static Boolean pathExists(String path) {
+        String[] directories = path.split("/");
+
+        for (String directory : directories) {
+            Directory virtual = DirectoryTree.getVirtualCurrent();
+
+            if (directory.equals("..")) {
+                Directory parent = virtual.getParent();
+
+                if (parent == null) {
+                    return false;
+                }
+
+                DirectoryTree.setVirtualCurrent(parent);
+            } else {
+                Directory currentDirectory;
+                currentDirectory = DirectoryTree.findDirOn(virtual, directory);
+
+                if (currentDirectory == null) {
+                    return false;
+                }
+
+                DirectoryTree.setVirtualCurrent(currentDirectory);
+            }
+        }
+
+        return true;
+    }
+    
+    public static void destroy () {
+        self = null;
+        tree = new ArrayList<>();
+        current = null;
+        virtualCurrent = null;
+        
+    }
+
+}

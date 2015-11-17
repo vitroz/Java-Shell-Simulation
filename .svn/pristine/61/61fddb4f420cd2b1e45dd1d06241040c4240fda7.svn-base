@@ -1,0 +1,31 @@
+package cmd;
+
+import directory.Directory;
+import directory.DirectoryTree;
+import driver.Command;
+
+public class Cd extends Command {
+    public Cd() {
+        
+    }
+    
+    
+    public void run (String[] directory) {
+        directory = directory[0].split("/");
+        for (String dir : directory) {
+            this.run(dir);
+        }
+    }
+    
+    public void run (String directory) {
+        DirectoryTree tree = DirectoryTree.getDirectoryTree();
+        Directory target = tree.findDirOnCurrent(directory);
+        
+        if (target != null) {
+            tree.setCurrent(target);
+            return;
+        }
+        
+        System.out.println("Directory does not exist");
+    }
+}

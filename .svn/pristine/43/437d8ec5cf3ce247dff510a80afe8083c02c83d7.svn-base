@@ -1,0 +1,30 @@
+package cmd;
+
+import directory.DirectoryTree;
+import files.TextFile;
+
+public class Echo extends Command {
+
+    public void run (String[] args) {
+        DirectoryTree tree = DirectoryTree.getDirectoryTree();
+        
+        TextFile newfile = new TextFile(args[2], tree.getCurrent(), args[0]);
+        tree.getCurrent().addFile(newfile);
+    }
+    
+    public String parseString (String[] args) {
+        String str = "";
+        
+        for (String s : args) {
+            str += s;
+
+            if (s.charAt(s.length() - 1) == '"') {
+                break;
+            }
+
+            str += " ";
+        }
+        
+        return str;
+    }
+}

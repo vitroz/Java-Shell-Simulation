@@ -1,0 +1,8 @@
+What did I do last time?
+	- Added "Commands" class and the actual commands extending it, as subclasses in a separate package "cmd".
+
+What do I plan to do now?
+	- Implement code in the subclasses.
+
+Am I blocked on anything?
+	- Not yet. As soon as we continue working on the commands, we expect to have some obstacles!

@@ -1,0 +1,31 @@
+package cmd;
+
+import files.Directory;
+import directory.DirectoryTree;
+import files.TextFile;
+
+public class Cp extends Command {
+    
+    private DirectoryTree tree;
+    
+    TextFile file1, file2;
+    
+    public Cp () {
+        tree = DirectoryTree.getDirectoryTree();
+    }
+    
+    public void run (String[] args) {
+        Directory current = tree.getCurrent();
+        
+        TextFile file1 = current.findFile(args[0]);
+        TextFile file2 = new TextFile(args[1], tree.getCurrent(), file1.getContent());
+
+        this.file1 = file1;
+	    this.file2 = file2;
+    }
+
+    public void run () {
+        System.out.println("Error, this command needs arguments");
+    }
+
+}

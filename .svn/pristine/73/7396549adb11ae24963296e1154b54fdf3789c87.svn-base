@@ -1,0 +1,55 @@
+package test.cmd;
+
+import cmd.Cat;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
+import org.mockito.runners.MockitoJUnitRunner;
+
+//@RunWith(MockitoJUnitRunner.class)
+public class CatTest {
+
+    @BeforeClass
+    public static void setUpClass() {
+        System.out.println("Beginning tests with cat class");
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+        System.out.println("ending tests with cat class");
+    }
+
+    /**
+     * Test of run method, of class Exit.
+     */
+//    @Test
+//    public void testRun() {
+//        Printer printer = Mockito.mock(Printer.class);
+//        printer.when(printer.print());
+//        
+//        System.out.println("run");
+//        Cat instance = new Cat();
+//        String[] file = { "file1.txt" };
+//        instance.run(file);
+//       // assertTrue(Exit.exit);
+//    }
+
+    /**
+     * Test of toString method, of class Exit.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        Cat instance = new Cat();
+        String expResult = "The command cat display a file's content"
+					+ " (i.e cat + arg(file)";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+    }
+
+}

@@ -1,0 +1,15 @@
+What did I work on last time?
+-- traversal commands; cleaned up the pwd.java code for a correct display;
+-- added comments to clarify confusing code
+-- changed root --> "/" as it was never intended to be displayed as a name;
+complies with proper naming conventions
+
+What do I plan to work on now?
+-- messing around with the DirectoryTree.java class as it is responsible for
+correctly tranversing file paths which are important to the success of the 
+CD, MV, and CP commands.
+
+
+Am I blocked on anything?
+-- Having trouble accessing the root folder for commands such as 'cd /',
+as well as sarting anything off with a full path -- relative paths seem fine.

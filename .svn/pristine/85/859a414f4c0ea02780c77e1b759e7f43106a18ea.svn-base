@@ -1,0 +1,9 @@
+package cmd;
+
+public class Get extends Command {
+	
+	  public void run(String[] args) {
+	      System.out.println("url\n");
+	  }
+
+}

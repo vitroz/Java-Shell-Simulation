@@ -1,0 +1,12 @@
+What did I do last time?
+	- Finished Sprint2
+
+What do I plan to do now?
+	- Implement missing crc cards and commands (crc for Directory Tree and 'man' command)
+	- Work on some bug solving.. in cp, cat and ls
+	
+
+Am I blocked on anything?
+ 	- getting cat to actually display the contents of a file in the current directory
+        - man is working, but is not implemented using the advantages of inheritances or polimorfism.. needs refactoring.
+ 	- ls works, but it keeps giving nullPointerException when executed from inside a directory different than root. Trying to do a validation for that.

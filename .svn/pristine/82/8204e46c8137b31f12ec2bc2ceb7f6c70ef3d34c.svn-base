@@ -1,0 +1,70 @@
+package test.cmd;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import cmd.Cd;
+import cmd.Command;
+import cmd.Ls;
+import cmd.Mkdir;
+import cmd.Pwd;
+import directory.DirectoryTree;
+import driver.JShell;
+import files.Directory;
+import files.TextFile;
+
+public class PwdTest {
+	
+	@Before
+	public void initialize() {
+		JShell setup = new JShell();
+		
+		//Uses init method from Jshell to setup a Directory tree.
+	    }
+	@After
+    public void dest(){
+		DirectoryTree.destroy();		
+	}
+
+	@Test
+	public void testRootAsInitialPath() throws Exception {		
+		Command pwd = new Pwd();		
+		pwd.run();		
+		
+		DirectoryTree.getCurrent().getPath();
+		//Get the current path, which was set by Before setup
+		
+		assertEquals(DirectoryTree.getCurrent().getPath(),"root");		
+		
+	}	
+	@Test
+	public void testPwdInsideADirectory() throws Exception {
+			Command pwd = new Pwd();
+			Command ls = new Ls();
+			
+			//mannualy changing directory to a previously created dir.
+			//using setup initialized by jshel.init.
+			DirectoryTree.setPath("directory1");			
+			
+			pwd.run();
+			ls.run();
+			
+		assertEquals(DirectoryTree.getCurrent().getPath(),"root/directory1");			
+			
+	}	
+	
+	@Test
+    public void testToString() {
+        System.out.println("toString");
+        Pwd instance = new Pwd();
+        String expResult = "Prints current working directory";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+    }
+
+	
+
+}

@@ -1,0 +1,7 @@
+What did I work on last time?
+-- I added mock File, Directory and TextFile classes (TextFile to be useful for using the command cat on specific types of files)
+What do I plan to work on now?
+-- I plan on adding to said classes and manage to test their inheritance and slowly integrate the needed commands.
+Am I blocked on anything?
+-- I was rather confused as to the rush of figuring out the coding of commands, when the file/directory structure should be though of before implementing commands.
+I went ahead and added the classes that I thought were important.

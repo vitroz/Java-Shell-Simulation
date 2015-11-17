@@ -1,0 +1,33 @@
+package cmd;
+
+/**
+ * Class is extended by all commands
+ */
+abstract public class Command {
+
+    private String parameters;
+    
+    /**
+     * Setting parameters
+     * @param p 
+     */
+    public void setParameters(String p) {
+        parameters = p;
+    }
+
+    /**
+     * Getting parameters
+     */
+    public String getParameters() {
+        return parameters;
+    }
+
+    
+    /**
+     * This method should be overridden by subclasses
+     */
+    public void execute() {
+        System.out.println("You should implement this method in the "
+                + "subclasses");
+    }
+}

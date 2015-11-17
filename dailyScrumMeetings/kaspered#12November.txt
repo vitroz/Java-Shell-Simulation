@@ -1,0 +1,11 @@
+What did I do last time?
+	- Worked on cp, cat and cd commands
+
+What do I plan to do now?
+	- corrects the following commands:
+		- mkdir
+		- mv
+		- echo
+
+Am I blocked on anything?
+	- How to test commands

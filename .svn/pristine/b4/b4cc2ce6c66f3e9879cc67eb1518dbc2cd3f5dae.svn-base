@@ -1,0 +1,68 @@
+package directory;
+
+import files.File;
+import files.TextFile;
+import java.util.ArrayList;
+
+public class Directory {
+
+    private String name;
+    private Directory parent;
+    public ArrayList<TextFile> content = new ArrayList<>();
+
+  public Directory() {
+    this.name = "root";
+    this.parent = null;
+
+  }//directory()
+
+  public Directory(String name, Directory parent) {
+    this.name = name;
+    this.parent = parent;
+    this.content = null;
+
+  }//directory(name,parent)
+
+  public String getPath(){
+      return this.getParentPath() + "/" + this.name;
+  }
+
+  public Directory getParent(){
+      return this.parent;
+  }
+
+  public String getParentPath() {
+      if (this.parent == null) {
+          return "";
+      }
+      
+      return this.parent.getParentPath() + "/" + this.parent.getName();
+  }
+  
+  public void addFile(TextFile f){
+    content.add(f);
+  }
+
+  public void removeFile(File f){
+    //parent.contents.remove(f);
+  }
+
+  public ArrayList<TextFile> getContent () {
+    return content;
+  }
+
+  public String getName () {
+      return this.name;
+  }
+  
+    public TextFile findFile(String filename) {
+        for (TextFile textfile : content) {
+            if (textfile.equals(filename)) {
+                return textfile;
+            }
+        }
+      
+        return null;
+    }
+    
+}//class directory

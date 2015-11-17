@@ -1,0 +1,6 @@
+package cmd;
+
+import driver.Command;
+
+public class Echo extends Command {
+}

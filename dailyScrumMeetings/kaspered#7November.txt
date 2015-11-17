@@ -1,0 +1,10 @@
+What did I do last time?
+	- Worked on new design
+
+What do I plan to do now?
+	- Cp command refactored
+	- New class to control tree
+	- cat also refactored to use execute
+
+Am I blocked on anything?
+	- How to test commands

@@ -1,0 +1,18 @@
+* As a user, I want to use command `echo`, so I add content to a file
+* As a user, I want to use command `ls`, so I can list a directory's content
+* As a user, I want to use command `mkdir`, so I can create a new directory
+* As a user, I want to use command `mv`, so I can move a file to a new location
+* As a user, I want to use command `exit`, so I finish the application
+* As a user, I want to use command `man`, so I can get a description of a
+  command that I would like to use.
+
+
+User: vieirad7
+Tasks: e-1, e-2, e-3, e-4, e-5, e-6, e-7
+ (Test) Test command `exit`
+* As a user, I want to use command `exit`, so I finish the application
+* (Test) Test command `exit`
+* As a user, I want to use command `get`, so I can get content from a URL
+* (Test) Test command `get`
+* As a user, I want to use command `ls`, so I can list a directory's content
+* (Test) Test command `ls`

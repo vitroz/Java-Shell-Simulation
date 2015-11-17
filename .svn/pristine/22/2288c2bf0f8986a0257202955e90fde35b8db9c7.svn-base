@@ -1,0 +1,10 @@
+Class name: Mkdir
+Parent class (if any): Command
+Subclasses (if any): none
+
+Responsabilities
+ * Valitates the arguments passed, or throws an exception
+ * Makes a new directory
+
+Collaborators
+ * Command

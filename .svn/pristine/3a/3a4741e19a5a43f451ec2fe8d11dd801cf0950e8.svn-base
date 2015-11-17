@@ -1,0 +1,9 @@
+Class name: LS
+Parent class (if any): Command
+Subclasses (if any): none
+
+Responsabilities
+ * Lists files and folders on the specified directory
+
+Collaborators
+ * Command

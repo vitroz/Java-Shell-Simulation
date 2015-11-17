@@ -1,0 +1,26 @@
+package driver;
+
+import directory.Directory;
+import driver.File;
+
+
+public class TextFile extends File {
+
+  String content;
+    private String name;
+    private String path;
+    private String parentPath;
+    private Directory parent;
+
+  public TextFile(){}
+
+  public TextFile(String name, Directory parent){
+    this.name = name;
+ //   this.path = parent.path + "/" + name;
+ //   this.parentPath = parent.path;
+    this.parent = parent;
+    content = "";
+
+  }//textfile(name,parent)
+
+}//class textfile

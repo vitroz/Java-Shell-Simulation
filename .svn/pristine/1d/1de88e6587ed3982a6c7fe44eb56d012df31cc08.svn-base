@@ -1,0 +1,45 @@
+package cmd;
+
+
+//import driver.Printer;
+
+import directory.DirectoryTree;
+import files.Directory;
+import files.TextFile;
+
+public class Cat extends Command {
+
+	private String description = "Display the contents of FILE in the shell.";
+    
+    //private Printer printer;
+    
+    /*public Cat() {
+        this.printer = new Printer();
+    }*/
+    @Override
+    public void run (String[] args) {
+    	//get current directory
+        Directory directory = DirectoryTree.getCurrent();
+        TextFile file = directory.findFile(args[0]);
+
+        if (file instanceof TextFile) {
+        	//prints contents of the file specified
+        	System.out.println(file.getContent());
+        }
+    }
+    
+    
+    //method to grab description for man command
+    public String getDescription(){
+    	return description;
+    }
+
+	@Override
+	public  String toString() {
+		return "The command cat display a file's content"
+					+ " (i.e cat + arg(file)";
+	}
+    
+  
+
+}

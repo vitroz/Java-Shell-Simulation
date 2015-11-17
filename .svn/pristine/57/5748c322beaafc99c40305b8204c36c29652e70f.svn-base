@@ -1,0 +1,108 @@
+// **********************************************************
+// Assignment2:
+// UTOR user_name1: kaspered
+// UTOR user_name2: vieirad7
+// UTOR user_name3: kovacsti	 
+// UTOR user_name4: zhaogang
+//
+// Author1: Eduardo H. Kasper
+// Author2: Vitor D. V. Queiroz
+// Author3: Timothy Kovacs
+// Author4: Zhao Gang
+//
+//
+// Honor Code: I pledge that this program represents my own
+// program code and that I have coded on my own. I received
+// help from no one in designing and debugging my program.
+// I have also read t   he plagiarism section in the course info
+// sheet of CSC 207 and understand the consequences.
+// *********************************************************
+package driver;
+
+import cmd.Exit;
+
+import java.util.Scanner;
+
+import files.Directory;
+import directory.DirectoryTree;
+import exception.CommandBlankException;
+import exception.CommandExistenceException;
+import files.TextFile;
+
+
+//Purpose: command line interface mock; takes in user inputs; spits out desired
+//         outputs.
+
+public class JShell {
+
+    /**
+     * Initiates the Directory Tree and what else is necessary to execute the 
+     * shell
+     */
+    public JShell() {
+        // Adding the root folder to our Directory Tree
+        DirectoryTree.createDirectoryTree(new Directory());
+        //Adding the base file(s) that our system will start with
+        DirectoryTree.getCurrent().addFile(new TextFile("file1", "File1"));
+        DirectoryTree.getCurrent().addFile(new TextFile("file2", "File2"));
+        DirectoryTree.getCurrent().addFile(new TextFile("file3", "File3"));
+
+        //Adding a base directory
+        Directory c = new Directory("directory1", DirectoryTree.getCurrent());
+
+        //Adds files to that base directory
+        c.addFile(new TextFile("file1.txt", c, "File1"));
+        c.addFile(new TextFile("file2.txt", c, "File2"));
+        c.addFile(new TextFile("file3.txt", c, "File3"));
+        c.addFile(new TextFile("file4.txt", c, "File4"));
+
+        DirectoryTree.add(c);
+    }
+
+    
+    /**
+     * @param args
+     * main method of JShell; initializes the shell, starts prompt for user
+     * input
+     * @throws Exception 
+     */
+    public static void main(String[] args) throws Exception {
+        // Initiating JShell class and the working directory
+        JShell jshell = new JShell();
+        
+        Scanner sc = new Scanner(System.in);
+        String input;
+
+
+        do {
+            //command line prompt
+            System.out.print("/# ");
+            input = sc.nextLine().trim();             
+            int words = input.isEmpty() ? 0 : input.split("\\s+").length;  // count the number of words in the input
+            int space = input.indexOf(' ');            
+            
+            try {
+                Interpreter in = new Interpreter(input);
+                
+                 if(words >= 2){
+                 	String params = input.substring(space);
+                 	params = params.replaceFirst(" ",""); // I used this because there was a extra space being added to the first position 
+                 	String[] p = new String[3];			  // of the string. BTW this comments are not going to be here for
+                 	p[0] = params;							// the final submission.
+                 	in.getCmd().execute(p);
+                 }else{               
+                	 in.getCmd().execute();
+                 }   
+            } catch (CommandBlankException e) {
+            } catch (CommandExistenceException e) {
+                System.out.println("Invalid Command");
+            } catch (InstantiationException | ClassNotFoundException 
+                    | IllegalAccessException e) {
+                System.out.println(e);
+            }
+            
+        } while(Exit.exit == false);
+        
+	System.exit(0);
+  }
+}

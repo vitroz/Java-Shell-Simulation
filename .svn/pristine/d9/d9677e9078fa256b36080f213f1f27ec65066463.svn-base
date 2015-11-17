@@ -1,0 +1,63 @@
+package cmd;
+
+import files.Directory;
+import directory.DirectoryTree;
+
+/**
+ * MKDIR is responsible for the creating of directories in our file-system.
+ * The user can provide a full path, and relative path and expect the directory
+ * file to be made there.
+ */
+
+public class Mkdir extends Command {
+
+	private String description = "mkdir DIR: \n "
+			+ "Create directories, each of which may be relative"
+				+ " to the current directory or may be a full path.";
+	
+    @Override
+    public void run (String[] args) {
+        Directory dir = null;
+        String folder = args[0];
+        int indexDashFolder = folder.lastIndexOf("/");
+        System.out.println(indexDashFolder);
+        if (indexDashFolder > 0) {
+        	String path = folder.substring(0, indexDashFolder);
+        	folder = folder.substring(indexDashFolder + 1);        
+            System.out.println("Path: " + path);
+            System.out.println("Folder: " + folder);
+            
+            if (DirectoryTree.pathExists(path)) {
+                dir = new Directory(folder, DirectoryTree.getVirtualCurrent());
+                DirectoryTree.add(dir);
+            }
+               	
+        }
+        else if (indexDashFolder == 0){
+        	folder = folder.substring(indexDashFolder + 1);
+        	if (DirectoryTree.pathExists("/")){
+        		dir = new Directory(folder, DirectoryTree.getVirtualCurrent());
+        		DirectoryTree.add(dir);
+        	}
+        	
+        }
+        else {
+            dir = new Directory(folder, DirectoryTree.getCurrent());
+            DirectoryTree.add(dir);
+        }
+        
+        
+        DirectoryTree.setVirtualCurrent(DirectoryTree.getCurrent());        
+    }
+    
+    
+    public String getDescription(){
+    	return description;
+    }
+    //redundant
+    public String toString() {
+		return " Create directories, each of which may be relative"
+				+ " to the current directory or may be a full path.";
+	}
+    
+}

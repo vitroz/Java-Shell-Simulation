@@ -1,0 +1,22 @@
+package cmd;
+
+import driver.Command;
+import driver.File;
+
+public class Cat extends Command {
+    String file;
+    
+    public Cat () {
+    }
+    
+    public void run (String[] args) {
+        System.out.println("constructing file: " + file);
+        this.file = file;
+        
+        System.out.print(file.toString());
+    }
+
+    public void run () {
+        System.out.println("Error, this command has arguments");
+    }
+}

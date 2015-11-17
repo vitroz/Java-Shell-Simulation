@@ -1,0 +1,34 @@
+package cmd;
+//traversing the directory structure; in this case the directory tree
+import directory.DirectoryTree;
+
+public class Cd extends Command {
+	//documentation for 'man' command
+	private String description = "Change directory to DIR, which may be relative"
+			+ " to the current directory or a full path. \"..\" refers to a parent"
+			+ " directory and \".\" means the current directory. The directory"
+			+ " seperator must be \"/\" , the forward slash. \"/\" is the root"
+			+ " directory. " ;
+	
+	@Override
+	//run() for no parameter 'cd' command; can be modified to set a 'home'
+	//directory
+	public void run(){
+		System.out.println("No home directory. Will stay in current directory");
+	}
+	
+    @Override
+    //run() for 'cd' command with parameters; 
+    public void run (String[] directory) {
+    	//sets the path; traverses if exists, otherwise prints message
+        if (! DirectoryTree.setPath(directory[0])) {
+            System.out.println("Directory does not exist");            
+        }
+        
+    }
+    //method to return documentation for 'man' command
+    public String getDescription(){
+    	return description;
+    }
+
+}

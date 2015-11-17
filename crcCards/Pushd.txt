@@ -1,0 +1,8 @@
+Class name: Pushd
+
+Responsibilities:
+ * Copy the path of the directory passed as a parameter and put it on the stack
+ * Check if the directory passed in the arguments exists
+
+Collaborators:
+ * Command

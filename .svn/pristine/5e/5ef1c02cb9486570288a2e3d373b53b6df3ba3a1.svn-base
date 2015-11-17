@@ -1,0 +1,76 @@
+package cmd;
+
+import directory.DirectoryTree;
+import files.Directory;
+import files.File;
+
+public class Mv extends Command {
+    
+    public void run (String[] args) {
+        File file1 = null, file2 = null;
+        
+        String path, file;
+        int indexLastFolder = args[0].lastIndexOf("/");
+        
+        if (indexLastFolder > -1) {
+            path = args[0];
+            file = path.substring(indexLastFolder + 1);        
+            path = path.substring(0, indexLastFolder);
+
+            if (DirectoryTree.pathExists(path)) {
+                file1 = DirectoryTree.getVirtualCurrent().findFile(file);
+                if (file1 == null) {
+                    file1 = DirectoryTree.findDirOn(DirectoryTree.getVirtualCurrent(), file);
+                }
+            }
+        } else {
+            file = args[0];
+            file1 = DirectoryTree.getCurrent().findFile(file);
+            if (file1 == null) {
+                file1 = DirectoryTree.findDirOn(DirectoryTree.getCurrent(), file);
+            }
+        }
+
+        if (! (file1 instanceof File)) {
+            return;
+        }
+        
+        indexLastFolder = args[1].lastIndexOf("/");
+        if (indexLastFolder > -1) {
+            path = args[1];
+            file = path.substring(indexLastFolder + 1);        
+            path = path.substring(0, indexLastFolder);
+
+            if (DirectoryTree.pathExists(path)) {
+                
+                if (false) {
+                    file1.setName(file);
+                }
+                file1.setParent(DirectoryTree.getVirtualCurrent());
+            }
+        } else {
+            file = args[1];
+            file2 = DirectoryTree.getCurrent().findFile(file);
+            if (file2 == null) {
+                file2 = DirectoryTree.findDirOn(DirectoryTree.getCurrent(), file);
+            }
+            
+            if (file2 == null) {
+                file1.setName(file);
+            } else {
+                if (file2.getClass().getName().equals("files.TextFile")) {
+                    file1.setName(file);
+                    file1.setParent(DirectoryTree.getCurrent());
+                } else if (file2.getClass().getName().equals("files.Directory")) {
+                    file1.setParent((Directory) file2);
+                }
+            }
+        }
+    }
+
+    public String toString() {
+		return "Move item to new directory."
+				+ " i.e mv + file + cwd/oldpath + newpath";
+	}
+    
+}

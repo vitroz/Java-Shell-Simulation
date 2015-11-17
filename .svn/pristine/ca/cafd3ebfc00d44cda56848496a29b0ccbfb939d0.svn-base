@@ -1,0 +1,18 @@
+package cmd;
+
+import directory.DirectoryTree;
+import files.File;
+import files.TextFile;
+
+public class Cat extends Command {
+    private DirectoryTree tree;
+
+    public Cat () {
+        tree = DirectoryTree.getDirectoryTree();
+    }
+    
+    public void run (String[] args) {
+        TextFile file = tree.getCurrent().findFile(args[0]);
+        System.out.println(file.getContent());
+    }
+}

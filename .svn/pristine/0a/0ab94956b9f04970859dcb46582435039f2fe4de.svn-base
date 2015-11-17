@@ -1,0 +1,12 @@
+What did I do last time?
+	- Finish exit command
+  - Finish Ls Command
+  - Help Ghan out with pwd command
+
+What do I plan to do now?
+  - Correct Ls Command - it can receive a path
+	- Work on some validation
+	- Delete Get Command because it's not being used anymore
+
+Am I blocked on anything?
+ - Directories path need some work

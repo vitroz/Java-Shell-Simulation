@@ -1,0 +1,22 @@
+package cmd;
+
+import directory.DirectoryTree;
+
+public class Pwd extends Command {
+    
+    @Override
+    public void execute () {
+        System.out.println(this.run());
+    }
+    
+    public String run() {
+        // Returns the path  
+        return DirectoryTree.getCurrent().getPath();
+    }//run()
+    
+    @Override
+    public String toString() {
+        return "Prints current working directory";
+    }
+
+}//class Pwd()

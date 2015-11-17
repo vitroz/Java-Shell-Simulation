@@ -1,0 +1,20 @@
+package cmd;
+
+import directory.DirectoryTree;
+
+public class Cd extends Command {
+
+    @Override
+    public void run (String[] directory) {
+        if (! DirectoryTree.setPath(directory[0])) {
+            System.out.println("Directory does not exist");            
+        }
+    }
+    
+  
+    public String toString() {
+		return "The command cd changes to directory passed as"
+				+ " an argument. i.e cd + arg(dir)";
+	}
+
+}

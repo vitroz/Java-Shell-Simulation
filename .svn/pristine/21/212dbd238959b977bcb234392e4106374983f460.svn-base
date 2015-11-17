@@ -1,0 +1,9 @@
+What did I work on last time?
+-- I added mock File, Directory and TextFile classes (TextFile to be useful for using the command cat on specific types of files)
+
+What do I plan to work on now?
+-- Since this current sprint (Sprint1) includes the implementation of the cat class, this is a very important file to focus on as it creates files needed for
+most of the other commands to work. So I plan to focus on the interaction between the file class and the cat command. 
+
+Am I blocked on anything?
+-- No

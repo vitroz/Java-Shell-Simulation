@@ -1,0 +1,12 @@
+package cmd;
+
+import driver.Command;
+
+public class ls extends Command {
+	
+	 public void ls () {
+	      System.out.println("ls\n");
+	  }
+	  
+
+}

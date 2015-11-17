@@ -1,0 +1,9 @@
+What did I work on last time?
+-- I worked on Pwd.java, Ls.java
+What do I plan to work on now?
+-- Continue on the non-trivial commands, particularly the ones that allow a
+path instead of a direct file/directory name to execute the command.
+Am I blocked on anything?
+-- Figuring out how to incorporate path into command strings, and extracting 
+the neccessary directory names to start traversing the path, and validating
+every "step" of the path.

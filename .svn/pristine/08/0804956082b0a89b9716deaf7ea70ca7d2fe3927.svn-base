@@ -1,0 +1,31 @@
+package driver;
+
+public class File {
+  String path;
+  public String name;
+  //String [] permissions = new String [4];
+  String parentPath;
+  Directory parent;
+  public String content;
+  
+  public File(){
+    this.name = "New Directory";
+  }
+  
+   public File(String name){
+	    this.name = name;	    
+	  }
+   
+   public File(String name, String content){
+	    this.name = name;	
+	    this.content = content;
+	  }
+        
+
+  public File(String name,String content, String path){
+    this.name = name;
+    this.path = path;
+    this.content = content;
+  }
+
+}

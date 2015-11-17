@@ -1,0 +1,34 @@
+package cmd;
+
+import directory.Directory;
+import directory.DirectoryTree;
+
+public class Mkdir extends Command {
+
+    private DirectoryTree tree;
+
+    public Mkdir () {
+        tree = DirectoryTree.getDirectoryTree();    
+    }
+    
+    public void run (String[] args) {
+        Directory dir = new Directory(args[0], tree.getCurrent());
+        tree.add(dir);
+    }
+	public static void mkdir(String s) {
+            
+//		String dirName = s;
+//		String specialChar = "!@$&*()?:[]"<>'`|={}\/";
+//		for charcter in s{
+//			if(charcter in specialChar){
+//				return "dirname cannot include charcter" + charcter
+//			}
+//		}
+//		s = Integer.toHexString(dirName.hashCode());
+//		File directory = new File(s);
+//		if(!directory.exists()){
+//			return directory
+//		}
+		//cd to the exist folder
+	}
+}

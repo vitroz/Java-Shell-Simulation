@@ -1,0 +1,74 @@
+package test.cmd;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import cmd.Cat;
+import cmd.Cd;
+import cmd.Pwd;
+import directory.DirectoryTree;
+import driver.JShell;
+
+public class CdTest {
+	
+	@Before
+	public void initialize() {
+		JShell setup = new JShell();
+		
+	//Uses init method from Jshell to setup a Directory tree.
+	    }
+	@After
+    public void destroy(){
+		DirectoryTree.destroy();		
+	}
+
+	@Test
+	public void cdTest() {
+		
+		Cd cd = new Cd();
+		Pwd pwd = new Pwd();
+		
+		pwd.run();
+		cd.run(new String[] {"directory1"});	
+		
+	    String currentPath = DirectoryTree.getCurrent().getPath();
+	    String expectedPath = "root/directory1";
+	    
+	    assertEquals(currentPath,expectedPath);		
+		
+		
+	}
+
+	
+	
+	@Test
+	public void cdBackToParentDirTest() {
+		
+		Cd cd = new Cd();
+		Pwd pwd = new Pwd();
+		
+		pwd.run();
+		cd.run(new String[] {"directory1"});	
+		cd.run(new String[] {".."});	
+		
+	    String currentPath = DirectoryTree.getCurrent().getPath();
+	    String expectedPath = "root";
+	    
+	    assertEquals(currentPath,expectedPath);				
+		
+	}
+	
+	 @Test
+	    public void testToString() {
+	        System.out.println("toString");
+	        Cd instance = new Cd();
+	        String expResult = "The command cd changes to directory passed as"
+				+ " an argument. i.e cd + arg(dir)";
+	        String result = instance.toString();
+	        assertEquals(expResult, result);
+	    }
+
+}

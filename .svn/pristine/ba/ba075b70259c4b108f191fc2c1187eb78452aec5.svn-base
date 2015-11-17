@@ -1,0 +1,22 @@
+package cmd;
+
+import directory.DirectoryTree;
+import files.TextFile;
+
+public class Echo extends Command {
+    private DirectoryTree tree;
+
+    public Echo () {
+        tree = DirectoryTree.getDirectoryTree();
+    }
+    
+    public void run (String[] args) {
+        TextFile newfile = new TextFile(args[2], tree.getCurrent(), args[0]);
+        tree.getCurrent().addFile(newfile);
+    }
+    
+    public void run (String directory) {
+        
+    }
+
+}

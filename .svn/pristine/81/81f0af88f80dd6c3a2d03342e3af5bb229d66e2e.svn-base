@@ -1,0 +1,8 @@
+Class name: Mv
+
+Responsibilities:
+ * Verifies the arguments passed, or throws an exception
+ * Moves directory to the passed argument
+
+Collaborators:
+ * Command

@@ -1,0 +1,56 @@
+package cmd;
+
+import directory.DirectoryTree;
+import files.Directory;
+import files.TextFile;
+
+public class Rm extends Command {
+	
+	 @Override
+	    public void execute () {
+	      	this.run();
+	    }
+	    
+	    public void run() {	    
+	    
+	     String fileTarget = getFileNameTarget();
+	     Directory parentDirectory = getParentDirectory();	    
+	        
+	     TextFile textFile = parentDirectory.findFile(fileTarget);    
+	   
+	        
+	     if (textFile instanceof TextFile) {
+	          parentDirectory.removeFile(textFile);
+	     }else{
+	    	  System.out.println("File couldn't be found.");
+	     }
+	        	       
+	    }
+
+
+	   
+	    private Directory getParentDirectory() {
+	        String path = getParameters();
+	        if (path.lastIndexOf("/") > -1) {
+	            path = path.substring(0, path.lastIndexOf("/"));
+	            return DirectoryTree.getDirectory(path);
+	        }
+	        
+	        return DirectoryTree.getCurrent();
+	    }   
+
+	    private String getFileNameTarget() {
+	        String path = getParameters();
+	        if (path.lastIndexOf("/") > -1) {
+	            path = path.substring(path.lastIndexOf("/") + 1);
+	            return path;
+	        }	        
+	        return path;
+	    }
+	    
+	    @Override
+	    public String toString() {
+	        return "Removes a file or directory";
+	    }
+
+}

@@ -1,0 +1,40 @@
+package cmd;
+import java.net.*;
+import java.io.*;
+
+import files.File;
+import files.TextFile;
+import directory.DirectoryTree;
+
+public class Get {
+	//URL is a web address. Retrieve the file at that URL and add it to the
+	//current working directory
+	
+	/* Example1:
+	 * get http://www.cs..../073.txt
+	 * 
+	 * Will get the contents of the file 073.txt and create a file in the cwd
+	 */
+	
+	 public void run(String args[]) throws IOException{
+			String url = args[1];
+			
+	        URL address = new URL(url);
+	        URLConnection yc = address.openConnection();
+	        BufferedReader in = new BufferedReader(new InputStreamReader(
+	                                    yc.getInputStream()));
+	        String inputLine;
+	        String content = "";
+	        while ((inputLine = in.readLine()) != null) 
+	            content += inputLine + "\n";
+	        	System.out.println(inputLine);
+	        in.close();
+	        
+	        String [] path = url.split("/");
+	        String fileName = path[-1];
+	        File file = new TextFile(fileName, DirectoryTree.getCurrent(), content);
+	        DirectoryTree.getCurrent().addFile(file);
+	         
+	  }
+	
+}

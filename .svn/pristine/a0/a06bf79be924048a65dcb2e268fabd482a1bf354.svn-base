@@ -1,0 +1,10 @@
+Class name: MV
+Parent class (if any): Command
+Subclasses (if any): none
+
+Responsabilities
+ * Validates the arguments
+ * Moves a file to a new file
+
+Collaborators
+ * Command

@@ -1,0 +1,60 @@
+Commands : exit, mkdir DIR, cd DIR, ls, pwd, mv OLDPATH NEWPATH, cp OLDPATH NEWPATH
+  	 	   cat FILE, echo STRING > OUTFILE, echo STRING >> OUTFILE, man CMD
+
+CD
+
+(1) no parameters --  # cd
+    * should take you to your home directory
+(2) one parameter [double dot] --  # cd ..
+    * should take to parent directory
+(3) one parameter [single dot] --  # cd .
+    * does nothing (stays in current directory
+(4) one parameter [single dot-fwdslash] -- # cd ./
+    * does nothing (stays in current directory
+(5) one parameter [relative path]
+    *should traverse the tree and take to
+(6) one parameter [absolute path]
+
+MKDIR
+
+(1) one parameter -- # mkdir filename
+(2) one parameter [relative path] -- # mkdir ./filename
+(3) one parameter [absolute path] -- # mkdir /Users/name/parent1/parent2/filename
+(n) one parameter [filename contains bad characters]
+(n+1) two parameters [both filenames contain bad characters]
+ 
+PWD
+(1) no parameters -- # pwd
+    * shows the current working directory relative to root
+(2) any parameters -- # pwd random1 random2
+    * shows root          **most likely not necessary to test since we've restricted it to no parameters**
+    
+CAT
+(1) one parameter [file exists] -- # cat filename
+    * should return contents of filename
+(2) one parameter [file does not exists] -- # cat filename
+    * should return an error   
+    
+EXIT
+(1) no parameters -- # exit
+    * should return some exit flag
+    
+MAN
+(1) no parameters -- # man
+    * should return some msg to user to ask what manual they'd like to view
+(2) one parameter -- # man command
+    * should return some basic description of the specified command
+(3) one parameter [command does not exists]  
+    * should return an error msg
+
+
+Note:    
+ECHO STRING [> OUTFILE]
+* if not outfile is provided, should pring the string to the shell
+* otherwise it overwrites file if exists (with the string), or creates the file
+  if the file does not exist
+ECHO STRING >> OUTFILE
+* similar to ECHO STRING > OUTFILE, but appends instead of overwrites
+
+
+    

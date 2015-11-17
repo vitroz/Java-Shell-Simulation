@@ -1,0 +1,10 @@
+Class name: File
+Parent class (if any): none
+Subclasses (if any): Directory, TextFile
+
+Responsibilities
+ * Display its content
+ 
+
+Collaborators
+ * Command

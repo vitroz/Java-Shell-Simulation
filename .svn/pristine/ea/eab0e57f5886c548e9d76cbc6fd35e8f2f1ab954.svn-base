@@ -1,0 +1,10 @@
+Class name: MV
+Parent class (if any): Command
+Subclasses (if any): none
+
+Responsibilities:
+ * Remove a file
+ * Remove a directoy
+
+Collaborators:
+ * Command

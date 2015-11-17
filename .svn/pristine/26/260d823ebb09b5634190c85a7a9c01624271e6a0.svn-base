@@ -1,0 +1,16 @@
+package cmd;
+
+import directory.Directory;
+import directory.DirectoryTree;
+
+public class Mv extends Command {
+    private DirectoryTree tree;
+
+    public Mv () {
+        tree = DirectoryTree.getDirectoryTree();    
+    }
+    
+    public void run (String[] args) {
+    }
+
+}

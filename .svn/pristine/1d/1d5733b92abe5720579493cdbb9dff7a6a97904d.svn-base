@@ -1,0 +1,34 @@
+package cmd;
+
+//traversing the directory structure; in this case the directory tree
+import directory.DirectoryTree;
+
+public class Cd extends Command {
+
+    /**
+     * Overriding execute so cd changes directory
+     */
+    @Override
+    public void execute () {
+        if (!this.run()) {
+            System.out.println("Directory couldn't be found or doesn't exist");
+        }
+    }
+		
+    //run() for 'cd' command with parameters; 
+    public boolean run () {
+    	//sets the path; traverses if exists, otherwise prints message
+        return DirectoryTree.setPath(this.getParameters());
+    }   
+    
+    /**
+     * Overriding toString so it can be used with man describing cd command
+     * @return 
+     */
+    @Override
+    public String toString() {
+        return "The command cd changes to directory passed as"
+                + " an argument. i.e cd + arg(dir)";
+    }
+
+}

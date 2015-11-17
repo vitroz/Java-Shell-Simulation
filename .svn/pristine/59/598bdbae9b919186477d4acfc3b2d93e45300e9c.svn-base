@@ -1,0 +1,34 @@
+package cmd;
+
+/**
+ * Class is extended by all commands
+ */
+abstract public class Command {
+
+    private String parameters;
+    
+    /**
+     * Setting parameters
+     * @param p 
+     */
+    public void setParameters(String p) {
+        parameters = p;
+    }
+
+    /**
+     * Getting parameters
+     */
+    public String getParameters() {
+        return parameters;
+    }
+
+    public void run (String[] args) throws Exception {
+        throw new Exception("You should implement this method on the "
+                + "subclasses");
+    }
+    
+    public void run() throws Exception {
+        throw new Exception("You should implement this method without arguments on the "
+                + "subclasses");
+    }
+}

@@ -1,0 +1,57 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import cmd.Cd;
+import cmd.Command;
+import cmd.Ls;
+import cmd.Mkdir;
+import cmd.Pwd;
+import directory.DirectoryTree;
+import driver.JShell;
+import files.Directory;
+public class PwdTest {
+	
+	@Before
+	public void initialize() {
+		
+		JShell jshell = new JShell();
+		jshell.init();
+	    //init, creates initial setup, which right now is a root directory
+		// a directory called directory1 and 3 files inside directory1.
+	    }
+
+	@Test
+	public void testRootAsInitialPath() throws Exception {		
+		Command pwd = new Pwd();
+		Command ls = new Ls();
+		pwd.run();
+		
+		DirectoryTree.getCurrent().getPath();
+		//Get the current path, which was set by jshel.init.
+		
+		assertEquals(DirectoryTree.getCurrent().getPath(),"/root");		
+		
+	}	
+	@Test
+	public void testPwdInsideADirectory() throws Exception {
+			Command pwd = new Pwd();
+			Command ls = new Ls();
+			
+			//mannualy changing directory to a previously created dir.
+			//using setup initialized by jshel.init.
+			DirectoryTree.setPath("directory1");			
+			
+			pwd.run();
+			ls.run();
+			
+		assertEquals(DirectoryTree.getCurrent().getPath(),"/root/directory1");			
+			
+	}	
+	
+	
+
+}

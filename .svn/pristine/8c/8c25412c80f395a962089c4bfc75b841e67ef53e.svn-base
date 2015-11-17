@@ -1,0 +1,13 @@
+What did I do last time?
+  - Correct Ls Command - it can receive a path
+	- Work on some validation
+	- Delete Get Command because it's not being used anymore
+
+What do I plan to do now?
+  - Finish the base cases for mkdir
+  - Finish the base cases for mv
+  - Finish the base cases for cp
+  - Correct the base case for echo
+
+Am I blocked on anything?
+ - Validating different paths are hard, so it needs some work

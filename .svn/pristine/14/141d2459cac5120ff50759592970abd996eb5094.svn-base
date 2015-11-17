@@ -1,0 +1,43 @@
+package test.cmd;
+
+import cmd.Exit;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author ehkasper
+ */
+public class ExitTest {
+        
+
+    /**
+     * Test of run method, of class Exit.
+     */
+    @Test
+    public void testRun() {
+        System.out.println("run");
+        Exit instance = new Exit();
+        instance.run();
+        assertTrue(Exit.exit);
+    }
+
+    /**
+     * Test of toString method, of class Exit.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        Exit instance = new Exit();
+        String expResult = "Terminates the shell.";
+        String result = instance.toString();
+        
+        assertEquals(expResult, result);
+    }
+    
+    
+    
+}

@@ -1,0 +1,10 @@
+Class name: CP
+Parent class (if any): Command
+Subclasses (if any): none
+
+Responsibilities:
+ * Validates the passed arguments
+ * Copies a file to a new file
+
+Collaborators
+ * Command

@@ -1,0 +1,7 @@
+* Create Interpreter
+* Structure the project to use polymorphism
+* Create CRC Card for interpreter class
+* As a user, I want to use command `cat`, so I can see files content
+* As a user, I want to use command `cd`, so I can navigate through directories
+* As a user, I want to use command `cp`, so I can copy a file into a new one
+* As a user, I want to use command `pwd`, so I can see the current working directory

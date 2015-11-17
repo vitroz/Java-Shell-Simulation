@@ -1,0 +1,38 @@
+package cmd;
+
+import driver.Printer;
+import directory.DirectoryTree;
+import files.Directory;
+import files.TextFile;
+
+public class Cat extends Command {
+    
+    private Printer printer;
+    
+    public Cat(Printer p) {
+        this.printer = p;
+    }
+
+    public Cat() {
+        this.printer = new Printer();
+    }
+    
+    @Override
+    public void run (String[] args) {
+        Directory directory = DirectoryTree.getCurrent();
+        TextFile file = directory.findFile(args[0]);
+
+        if (file instanceof TextFile) {
+            printer.print(file.getContent());
+        }
+    }
+
+	@Override
+	public  String toString() {
+		return "The command cat display a file's content"
+					+ " (i.e cat + arg(file)";
+	}
+    
+  
+
+}

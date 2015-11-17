@@ -1,0 +1,14 @@
+package driver;
+
+import cmd.exit;
+
+public class Commands {
+	
+	protected static boolean exit = false;	
+	
+	public boolean getExitStatus(){
+		return exit;
+	}
+		
+
+}

@@ -1,0 +1,69 @@
+// **********************************************************
+// Assignment2:
+// UTOR user_name1: kaspered
+// UTOR user_name2: vieirad7
+// UTOR user_name3: kovacsti	 
+// UTOR user_name4: zhaogang
+//
+// Author1: Eduardo H. Kasper
+// Author2: Vitor D. V. Queiroz
+// Author3: Timothy Kovacs
+// Author4: Zhao Gang
+//
+//
+// Honor Code: I pledge that this program represents my own
+// program code and that I have coded on my own. I received
+// help from no one in designing and debugging my program.
+// I have also read t   he plagiarism section in the course info
+// sheet of CSC 207 and understand the consequences.
+// *********************************************************
+package driver;
+
+import java.util.Hashtable;
+import java.util.Scanner;
+
+import cmd.exit;
+import cmd.get;
+import cmd.ls;
+
+public class JShell {
+		  	
+
+	public static void main(String[] args) {
+    Hashtable<String, Integer> commands = new Hashtable<String, Integer>();      
+
+    commands.put("exit", 0);
+    commands.put("pwd", 0); // these keys on Hash commands receive 0 parameters.
+    commands.put("ls", 0);
+
+    commands.put("mkdir", 1);
+    commands.put("cd", 1); // these keys on Hash commands receive 1 parameter.
+    commands.put("cat", 1);
+    commands.put("get", 1);
+
+    commands.put("mv", 2);
+    commands.put("cp", 2); // these keys on Hash commands receive 2 parameters.
+
+    commands.put("echo", 3); // this key in Hash commands receive 3 parameters.
+
+		exit input = new exit();
+		
+		Scanner in = new Scanner(System.in);
+		String command;
+		String[] cmds = null;			
+
+	while(input.getExitStatus() == false){
+		do {
+			System.out.print("/# ");
+			command = in.nextLine();
+			cmds = command.split(" ");
+			
+			if (commands.contains(cmds[0])) {
+				// command exists
+			}
+		} while((command).equals(""));
+	}
+	in.close();
+	System.exit(0);
+  }
+}

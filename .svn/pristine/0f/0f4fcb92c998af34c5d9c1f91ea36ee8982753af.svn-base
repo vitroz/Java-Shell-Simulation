@@ -1,0 +1,44 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import com.sun.java_cup.internal.runtime.Scanner;
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
+
+import cmd.Cat;
+import cmd.Cd;
+import cmd.Command;
+import cmd.Cp;
+import cmd.Echo;
+import cmd.Exit;
+import cmd.Ls;
+import cmd.Man;
+import cmd.Mkdir;
+import cmd.Mv;
+import cmd.Pwd;
+
+public class ManTest {
+	
+	Hashtable cmds = new Hashtable();
+	
+
+	@Test
+	public void testRunStringArray() throws Exception {
+		
+		cmds.put("cat", new Cat());
+		cmds.put("exit", new Exit());
+		cmds.put("pwd", new Pwd());
+		cmds.put("cd", new Cd());
+		cmds.put("ls", new Ls());
+		cmds.put("mkdir", new Mkdir());
+		cmds.put("man", new Man());
+		cmds.put("mv", new Mv());
+		cmds.put("cp", new Cp());
+		cmds.put("echo", new Echo());
+		//NOT IMPLEMENTED... STILL TRYING TO FIGURE IT OUT - DEBUG
+
+	}
+
+}

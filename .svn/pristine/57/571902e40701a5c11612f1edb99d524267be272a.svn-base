@@ -1,0 +1,9 @@
+Class name: Directory
+Parent class (if any): File
+Subclasses (if any): 
+Responsabilities
+ * Directory instance should be created when called by the appropriate command.
+ * Have all the necessary fields in the constructor
+
+Collaborators
+ * Commands

@@ -1,0 +1,30 @@
+package cmd;
+
+import driver.Command;
+import driver.File;
+
+public class Cp extends Command {
+	
+	 File file1, file2;
+	 String aux;
+	
+	 public void run (String[] args) {
+		 
+		 	File file1 = new File(args[0],"CONTENT OF FILE 1");
+		 	File file2 = new File(args[1],file1.content);
+		
+		 
+	        System.out.println("Copying " + file1.name + " contents" + " to " + file2.name);
+	        System.out.println("File 1 content: " + file1.content + "\n" + "File 2 content: " + file2.content);
+	        
+	        this.file1 = file1;
+	        this.file2 = file2;	        
+	       
+	        	        
+	    }
+
+	    public void run () {
+	        System.out.println("Error, this command needs arguments");
+	    }
+
+}

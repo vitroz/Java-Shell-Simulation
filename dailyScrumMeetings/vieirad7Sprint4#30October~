@@ -1,0 +1,11 @@
+What did I do last time?
+	- Finished Sprint 3
+	- Started JUnit tests
+	- Implemented the code for PwdTest and CdTest
+What do I plan to do now?
+	- Finish JUnit tests
+  	
+
+Am I blocked on anything?
+ - Commands that take more than 1 parameters(cp,echo,mv) are proving to be a little more tricky to test..
+

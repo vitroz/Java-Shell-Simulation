@@ -1,0 +1,15 @@
+What did I do last time?
+	- Solve the problems with CD I was stuck at.
+	- Improve TextFile class
+	- Start sprint 3 commands
+
+What do I plan to do now?
+	- Finish exit command
+  - Finish Ls Command
+  - Help Ghan out with pwd command
+
+Am I blocked on anything?
+ - Mkdir needs more testing
+ - As Timothy says, the paths are a problem. We have to figure out a way to
+    do that easily
+ - We need to organize JShell better. There's too many responsabilitie on it

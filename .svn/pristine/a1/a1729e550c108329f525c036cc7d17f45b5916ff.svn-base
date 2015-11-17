@@ -1,0 +1,18 @@
+* (Test) Test command `exit`
+* As a user, I want to use command `exit`, so I finish the application
+* (Test) Test command `exit`
+* As a user, I want to use command `get`, so I can get content from a URL
+* (Test) Test command `get`
+* As a user, I want to use command `ls`, so I can list a directory's content
+* (Test) Test command `ls`
+
+
+User: vieirad7
+Tasks: e-1, e-2, e-3, e-4, e-5, e-6, e-7
+ (Test) Test command `exit`
+* As a user, I want to use command `exit`, so I finish the application
+* (Test) Test command `exit`
+* As a user, I want to use command `get`, so I can get content from a URL
+* (Test) Test command `get`
+* As a user, I want to use command `ls`, so I can list a directory's content
+* (Test) Test command `ls`

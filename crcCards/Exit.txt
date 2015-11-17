@@ -1,0 +1,9 @@
+Class name: Exit
+Parent class (if any): Command
+Subclasses (if any): none
+
+Responsibilities:
+ * Stop the execution
+
+Collaborators:
+ * Command

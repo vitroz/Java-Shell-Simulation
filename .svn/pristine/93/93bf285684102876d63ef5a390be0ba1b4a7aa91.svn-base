@@ -1,0 +1,41 @@
+package cmd;
+//traversing the directory structure; in this case the directory tree
+import directory.DirectoryTree;
+
+public class Cd extends Command {
+	
+	//run() for no parameter 'cd' command; can be modified to set a 'home'
+	//directory
+	@Override
+	public void execute(String[] directory) {		
+        try {
+            this.run(directory);
+        } catch (Exception ex) {
+            System.out.println("Command not found");
+        }
+	}
+	
+    public void execute() {	
+        	System.out.println("This command requires params");          
+}	
+	
+	public void run(){
+		System.out.println("No home directory. Will stay in current directory");
+	}
+	
+    //run() for 'cd' command with parameters; 
+    public void run (String[] directory) {
+    	//sets the path; traverses if exists, otherwise prints message
+        if (! DirectoryTree.setPath(directory[0])) {
+            System.out.println("Directory does not exist");            
+        }
+        
+    }   
+    
+    
+    public String toString() {
+		return "The command cd changes to directory passed as"
+				+ " an argument. i.e cd + arg(dir)";
+	}
+
+}

@@ -1,0 +1,45 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import cmd.Cd;
+
+import cmd.Mkdir;
+
+import directory.DirectoryTree;
+import driver.JShell;
+
+public class MkdirTest {
+	
+	@Before
+	public void initialize() {
+		JShell setup = new JShell();
+		setup.init();
+		
+	//Uses init method from Jshell to setup a Directory tree.
+	    }
+	@After
+    public void dest(){
+		DirectoryTree.destroy();		
+	}
+
+	@Test
+	public void mkdirTest() {
+		Mkdir mkdir = new Mkdir();
+		Cd cd = new Cd();
+		
+		mkdir.run(new String[] {"dir2"});	
+		cd.run(new String[] {"dir2"});
+		
+		String currentPath = DirectoryTree.getCurrent().getPath();
+	    String expectedPath = "root/dir2";
+	    
+	    assertEquals(currentPath,expectedPath);				
+		
+	}
+
+}

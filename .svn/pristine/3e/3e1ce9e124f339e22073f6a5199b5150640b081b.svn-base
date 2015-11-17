@@ -1,0 +1,50 @@
+package test.cmd;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import cmd.Cat;
+import cmd.Echo;
+import directory.DirectoryTree;
+import driver.JShell;
+import files.Directory;
+import files.TextFile;
+
+public class EchoTest {
+	
+	@Before
+	public void initialize() {
+		JShell setup = new JShell();
+		setup.init();		
+//setup Uses init method from Jshell to setup a Directory tree.
+	    }
+	@After
+    public void destroy(){
+		DirectoryTree.destroy();		
+	}
+
+	@Test
+	public void testEchoToANewFile() {
+		Echo echo = new Echo();
+		Cat cat = new Cat();
+		Directory directory = DirectoryTree.getCurrent();
+		
+		echo.run(new String[] {"Test",">","file4"});		
+		cat.run(new String[] {"file4"});
+		
+		String expected = "Test";
+		
+		
+		TextFile file4 = directory.findFile("file4");		
+		assertEquals(expected,file4.getContent());
+	}
+
+	
+	public void testParseString() {
+		fail("Not yet implemented");
+	}
+
+}

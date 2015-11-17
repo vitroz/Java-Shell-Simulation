@@ -1,0 +1,14 @@
+What did I do last time?
+	- Finished Sprint1
+
+What do I plan to do now?
+	- Structure the project to start implementing commands
+  	- Work on sprint 2 (cp cat)
+
+Am I blocked on anything?
+ - Showing just one error message whenever the path to directory does not exist
+ - Right now, I'am creating a file inside the function (cp and cat), the right way to do this would be retrieving an existing file from
+   an existing array of files inside a "Directory" and passing it as a parameter. We have the abstraction already, should be ready shortly. 
+   The main structure is there.
+
+Note: We were pair programming the structural part

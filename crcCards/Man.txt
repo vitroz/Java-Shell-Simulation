@@ -1,0 +1,10 @@
+Class name: Directory Man
+Parent class (if any): Command
+Subclasses (if any): 
+
+Responsibilities:
+ * Show a description of the command passed as an argument
+ * Validate if the argument is valid command 
+
+Collaborators:
+ * Command

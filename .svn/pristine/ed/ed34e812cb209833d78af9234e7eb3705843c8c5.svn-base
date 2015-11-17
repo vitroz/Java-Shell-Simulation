@@ -1,0 +1,11 @@
+Class name: Command
+Parent class (if any): none
+Subclasses (if any): LS, PWD Exit, MkDir, CD, Cat, Get, MV, CP, Echo
+
+Responsibilities
+ * Knows the command
+ * Knows the arguments, if any
+
+Collaborators
+ * JShell
+ * Interpreter

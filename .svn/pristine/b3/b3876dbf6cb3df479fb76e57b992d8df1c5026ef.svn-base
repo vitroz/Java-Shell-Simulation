@@ -1,0 +1,10 @@
+Class name: TextFile
+Parent class (if any): File
+Subclasses (if any): 
+
+Responsibilities:
+ * TextFile instance should be created when called by the appropriate command
+ * Have all the necessary fields in the constructor
+
+Collaborators:
+ * Command

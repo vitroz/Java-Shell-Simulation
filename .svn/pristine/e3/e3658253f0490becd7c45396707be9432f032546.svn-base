@@ -1,0 +1,10 @@
+Class name: Echo
+Parent class (if any): Command
+Subclasses (if any): none
+
+Responsabilities
+ * Validates the passed arguments
+ * Writes a string to a new file
+
+Collaborators
+ * Command

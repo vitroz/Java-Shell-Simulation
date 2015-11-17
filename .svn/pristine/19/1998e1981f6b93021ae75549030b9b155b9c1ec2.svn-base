@@ -1,0 +1,53 @@
+package driver;
+
+import cmd.Command;
+import java.util.Hashtable;
+
+/**
+ *
+ * @author ehkasper
+ */
+public class Interpreter {
+	//stores commands with their associated number of parameters
+    static Hashtable<String, Integer> commands = new Hashtable<String, Integer>();
+
+    // Command to be interpreted
+    private Command cmd;
+    
+    public static boolean verify (String commmand) {
+        
+        commands.put("exit", 0);
+        commands.put("pwd", 0); // these keys on Hash commands receive 0 parameters.
+
+        commands.put("ls", 1);
+        commands.put("mkdir", 1);
+        commands.put("cd", 1); // these keys on Hash commands receive 1 parameter.
+        commands.put("cat", 1);
+        commands.put("get", 1);
+        commands.put("man", 1);      
+
+        commands.put("mv", 2);
+        commands.put("cp", 2); // these keys on Hash commands receive 2 parameters.
+
+        commands.put("echo", 3); // this key in Hash commands receive 3 parameters.
+
+        return commands.containsKey(commmand);
+    }
+    
+    public Interpreter (String command) throws ClassNotFoundException,
+            InstantiationException, IllegalAccessException, Exception {
+        
+        Class c = Class.forName("cmd." + command);
+        this.cmd = (Command) c.newInstance();
+        
+    }
+
+    public void execute(String[] parameters) throws Exception {
+        cmd.run(parameters);
+    }
+
+    public void execute() throws Exception {
+        cmd.run();
+    }
+
+}

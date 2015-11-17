@@ -1,0 +1,19 @@
+package cmd;
+
+
+
+public class Exit extends Command {	
+    
+    public static boolean exit = false;
+    
+    @Override
+    public void execute () {
+        exit = true;
+    }   
+    
+    @Override
+    public String toString() {
+        return "Terminates the shell.";
+    }
+
+}
